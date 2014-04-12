@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="60" height="34" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="grass" tilewidth="32" tileheight="32">
+  <image source="grass.png" trans="ff00ff" width="32" height="32"/>
+  <tile id="0">
+   <properties>
+    <property name="type" value="solid"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="2" name="grassNotSolid" tilewidth="32" tileheight="32">
+  <image source="grass.png" trans="ff00ff" width="32" height="32"/>
+  <tile id="0">
+   <properties>
+    <property name="type" value="notSolid"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="Tile Layer 1" width="60" height="34">
+  <data encoding="base64" compression="zlib">
+   eJzt1sEKgCAQBmH1/R86Ak/dglp/nflg7025UmuSJHH1ORS0XomgP+Z0d+OYs2Pv2+9E7CWdZylF5c4l7Hl17+p7nNZbKeE8S7uh7csXvUnvrOJZ6L1J/X+wd91/9+kzYHMBdGABAw==
+  </data>
+ </layer>
+</map>
