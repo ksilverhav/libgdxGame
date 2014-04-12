@@ -1,29 +1,13 @@
-# and2
-nightly/libs
-bitz/data/*
+# IntelliJ ignores
 
-            ignore/*
+*.iml
+*.ipr
+*.iws
+.idea/
 
-            .DS_Store
-            */.DS_Store
-**/**/.DS_Store
-
-.metadata
-*/.metadata
-
-*/bin/**
-       */tmp/**
-              */tmp/**/*
-                         *.tmp
-                         *.bak
-                         *.swp
-                         *~.nib
-
-                         RemoteSystemsTempFiles/
-
-# android specific
-# */gen/*   ### we want these!
-            */bin
+# built application files
+*.apk
+*.ap_
 
 # files for the dex VM
 *.dex
@@ -31,11 +15,17 @@ bitz/data/*
 # Java class files
 *.class
 
-# generated GUI files
-*R.java
+# generated files
+bin/
+gen/
+out/
 
-### eclipse files we DO want
-# local.properties
-# */.loadpath
-# classpath
-# settings
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Eclipse project files
+.classpath
+.project
+
+# Log files
+.log
