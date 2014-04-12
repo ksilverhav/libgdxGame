@@ -1,0 +1,132 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  Internal Error (javaClasses.cpp:136), pid=3576, tid=1516
+#  fatal error: Invalid layout of preloaded class
+#
+# JRE version:  (7.0_45-b18) (build )
+# Java VM: Java HotSpot(TM) Client VM (24.45-b08 mixed mode windows-x86 )
+# Failed to write core dump. Minidumps are not enabled by default on client versions of Windows
+#
+# If you would like to submit a bug report, please visit:
+#   http://bugreport.sun.com/bugreport/crash.jsp
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x0027c400):  JavaThread "Unknown thread" [_thread_in_vm, id=1516, stack(0x00e90000,0x00ee0000)]
+
+Stack: [0x00e90000,0x00ee0000],  sp=0x00edf8b0,  free space=318k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [jvm.dll+0x18df51]
+V  [jvm.dll+0x187cc6]
+V  [jvm.dll+0x3586a]
+V  [jvm.dll+0x358f6]
+V  [jvm.dll+0x4400d]
+V  [jvm.dll+0x442be]
+V  [jvm.dll+0x9263a]
+V  [jvm.dll+0x929eb]
+V  [jvm.dll+0x13daf1]
+V  [jvm.dll+0x1605fc]
+V  [jvm.dll+0xc8ebf]
+C  [javaw.exe+0x13ce]
+C  [javaw.exe+0x1e40]
+C  [javaw.exe+0xa5b1]
+C  [javaw.exe+0xa63b]
+C  [kernel32.dll+0x133aa]
+C  [ntdll.dll+0x39ef2]
+C  [ntdll.dll+0x39ec5]
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+
+Other Threads:
+
+=>0x0027c400 (exited) JavaThread "Unknown thread" [_thread_in_vm, id=1516, stack(0x00e90000,0x00ee0000)]
+
+VM state:not at safepoint (not fully initialized)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+GC Heap History (0 events):
+No events
+
+Deoptimization events (0 events):
+No events
+
+Internal exceptions (0 events):
+No events
+
+Events (10 events):
+Event: 0.012 loading class 0x004d9658 done
+Event: 0.012 loading class 0x004d90e8 done
+Event: 0.012 loading class 0x004d90c8
+Event: 0.013 loading class 0x004e03f0
+Event: 0.013 loading class 0x004e03f0 done
+Event: 0.013 loading class 0x004e0420
+Event: 0.013 loading class 0x004e0420 done
+Event: 0.013 loading class 0x004e0450
+Event: 0.013 loading class 0x004e0450 done
+Event: 0.013 loading class 0x004d90c8 done
+
+
+Dynamic libraries:
+0x01120000 - 0x0114f000 	C:\Program Files (x86)\Java\jre7\bin\javaw.exe
+0x76fb0000 - 0x77130000 	C:\Windows\SysWOW64\ntdll.dll
+0x75290000 - 0x753a0000 	C:\Windows\syswow64\kernel32.dll
+0x74dc0000 - 0x74e07000 	C:\Windows\syswow64\KERNELBASE.dll
+0x74880000 - 0x74920000 	C:\Windows\syswow64\ADVAPI32.dll
+0x754b0000 - 0x7555c000 	C:\Windows\syswow64\msvcrt.dll
+0x74830000 - 0x74849000 	C:\Windows\SysWOW64\sechost.dll
+0x74b70000 - 0x74c60000 	C:\Windows\syswow64\RPCRT4.dll
+0x74690000 - 0x746f0000 	C:\Windows\syswow64\SspiCli.dll
+0x74680000 - 0x7468c000 	C:\Windows\syswow64\CRYPTBASE.dll
+0x753a0000 - 0x754a0000 	C:\Windows\syswow64\USER32.dll
+0x76530000 - 0x765c0000 	C:\Windows\syswow64\GDI32.dll
+0x754a0000 - 0x754aa000 	C:\Windows\syswow64\LPK.dll
+0x75560000 - 0x755fd000 	C:\Windows\syswow64\USP10.dll
+0x740d0000 - 0x7426e000 	C:\Windows\WinSxS\x86_microsoft.windows.common-controls_6595b64144ccf1df_6.0.7601.17514_none_41e6975e2bd6f2b2\COMCTL32.dll
+0x747d0000 - 0x74827000 	C:\Windows\syswow64\SHLWAPI.dll
+0x74d50000 - 0x74db0000 	C:\Windows\system32\IMM32.DLL
+0x765c0000 - 0x7668c000 	C:\Windows\syswow64\MSCTF.dll
+0x6d710000 - 0x6d7cf000 	C:\Program Files (x86)\Java\jre7\bin\msvcr100.dll
+0x610a0000 - 0x61420000 	C:\Program Files (x86)\Java\jre7\bin\client\jvm.dll
+0x72e70000 - 0x72e77000 	C:\Windows\system32\WSOCK32.dll
+0x75250000 - 0x75285000 	C:\Windows\syswow64\WS2_32.dll
+0x74db0000 - 0x74db6000 	C:\Windows\syswow64\NSI.dll
+0x72e00000 - 0x72e32000 	C:\Windows\system32\WINMM.dll
+0x74cb0000 - 0x74cb5000 	C:\Windows\syswow64\PSAPI.DLL
+0x6f350000 - 0x6f35c000 	C:\Program Files (x86)\Java\jre7\bin\verify.dll
+0x6dd20000 - 0x6dd40000 	C:\Program Files (x86)\Java\jre7\bin\java.dll
+0x6d890000 - 0x6d8a3000 	C:\Program Files (x86)\Java\jre7\bin\zip.dll
+0x720f0000 - 0x721db000 	C:\Windows\system32\dbghelp.dll
+
+VM Arguments:
+jvm_args: -Dfile.encoding=UTF-8 -Xbootclasspath:C:\Program\Eclipse\adt-bundle-windows-x86_64-20140321\sdk\platforms\android-19\android.jar 
+java_command: com.me.mygdxgame.Main
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+CLASSPATH=.;C:\Program Files (x86)\Java\jre7\lib\ext\QTJava.zip
+PATH=C:\Perl64\bin;C:\Perl64\site\bin;C:\Perl64\bin;C:\Program Files (x86)\AMD APP\bin\x86_64;C:\Program Files (x86)\AMD APP\bin\x86;C:/ccs/ccsv5/../xdctools_3_22_01_21;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\ATI Technologies\ATI.ACE\Core-Static;C:\Program Files (x86)\MIT\Kerberos\bin;C:\Program Files\MATLAB\R2011b\runtime\win64;C:\Program Files\MATLAB\R2011b\bin;C:\Program Files\MATLAB\R2010b\runtime\win64;C:\Program Files\MATLAB\R2010b\bin;C:\Program Files (x86)\QuickTime\QTSystem\;C:\Program Files (x86)\Autodesk\Backburner\;C:\Program Files\Common Files\Autodesk Shared\;C:\Program Files\MiKTeX 2.9\miktex\bin\x64\;C:\OrCAD\OrCAD_16.5_Lite\tools\pcb\bin;C:\OrCAD\OrCAD_16.5_Lite\tools\fet\bin;C:\OrCAD\OrCAD_16.5_Lite\OpenAccess\bin\win32\opt;C:\OrCAD\OrCAD_16.5_Lite\tools\bin;C:\OrCAD\OrCAD_16.5_Lite\tools\Capture;C:\OrCAD\OrCAD_16.5_Lite\tools\PSpice\Library;C:\OrCAD\OrCAD_16.5_Lite\tools\PSpice;C:/ccs/ccsv5/../xdctools_3_22_01_21
+USERNAME=Palsson
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 37 Stepping 5, GenuineIntel
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows 7 , 64 bit Build 7601 Service Pack 1
+
+CPU:total 4 (2 cores per cpu, 2 threads per core) family 6 model 37 stepping 5, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, ht, tsc, tscinvbit
+
+Memory: 4k page, physical 3854772k(1085536k free), swap 3852920k(775276k free)
+
+vm_info: Java HotSpot(TM) Client VM (24.45-b08) for windows-x86 JRE (1.7.0_45-b18), built on Oct  8 2013 06:02:43 by "java_re" with unknown MS VC++:1600
+
+time: Sat Apr 12 21:10:34 2014
+elapsed time: 0 seconds
+
