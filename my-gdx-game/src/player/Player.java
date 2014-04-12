@@ -55,7 +55,7 @@ public class Player {
 		circle.dispose();
 	}
 	public void draw(SpriteBatch batch){
-		sprite.setPosition(body.getPosition().x*Constant.BOX_TO_WORLD, body.getPosition().y*Constant.BOX_TO_WORLD);
+		sprite.setPosition((body.getPosition().x*Constant.BOX_TO_WORLD)-(sprite.getWidth()/2), (body.getPosition().y*Constant.BOX_TO_WORLD)-(sprite.getHeight()/2));
 		sprite.draw(batch);
 	}
 	public float getX(){
