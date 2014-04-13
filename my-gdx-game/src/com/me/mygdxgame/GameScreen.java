@@ -9,22 +9,27 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
 public class GameScreen implements Screen {
 	private OrthographicCamera camera;
 	private OrthogonalTiledMapRenderer mapRenderer;
 	private TiledMap map;
+	private TiledMapTileLayer blocks;
 
 	private SpriteBatch batch;
 	private Texture texture;
@@ -48,6 +53,7 @@ public class GameScreen implements Screen {
 		
 		map = new TmxMapLoader().load("environment/trollemap.tmx");
 		mapRenderer = new OrthogonalTiledMapRenderer(map);
+		createObjectsFromMap(map);
 		
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, 1920, 1080);
@@ -55,6 +61,31 @@ public class GameScreen implements Screen {
 		createCollisionListener();
 	}
 
+	private void createObjectsFromMap(TiledMap map){
+		BodyDef groundBodyDef = new BodyDef();
+		groundBodyDef.type = BodyDef.BodyType.StaticBody;
+		
+		
+		
+		
+		blocks = (TiledMapTileLayer) map.getLayers().get("Tile Layer 1");
+		for(int x = 0; x < blocks.getWidth(); x++){
+			for(int y = 0; y < blocks.getHeight(); y++){
+				if(blocks.getCell(x, y) != null){
+					if(blocks.getCell(x, y).getTile().getProperties().get("type").equals("solid")){
+						groundBodyDef.position.set((x*Constant.WORLD_TO_BOX*32)+(16*Constant.WORLD_TO_BOX), (y*Constant.WORLD_TO_BOX*32)+(16*Constant.WORLD_TO_BOX));
+						Body groundBody = world.createBody(groundBodyDef);
+						
+						PolygonShape groundBox = new PolygonShape(); 
+						groundBox.setAsBox((32*Constant.WORLD_TO_BOX)/2, (32*Constant.WORLD_TO_BOX)/2);
+						groundBody.createFixture(groundBox, 0.0f); 
+					}
+				}
+				
+			}
+		}
+	}
+	
 	@Override
 	public void render(float delta) {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
@@ -67,11 +98,11 @@ public class GameScreen implements Screen {
 		player.draw(batch);
 		batch.end();
 
-		debugRenderer.render(world, debugMatrix);
+		
 		
 		mapRenderer.setView(camera);
 		mapRenderer.render();
-
+		debugRenderer.render(world, debugMatrix);
 		// Simulate Box2D world
 		world.step(1 / 60f, 6, 2);
 	}
