@@ -30,13 +30,13 @@ public class SlopePlatform extends Platform{
 	}
 
 	@Override
-	public void beginContactWith(GameObject gameObject) {
+	public void beginContactWith(GameObject gameObject, Vector2 normal) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void endContactWith(GameObject gameObject) {
+	public void endContactWith(GameObject gameObject, Vector2 normal) {
 		// TODO Auto-generated method stub
 		
 	}

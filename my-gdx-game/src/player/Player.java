@@ -60,7 +60,7 @@ public class Player extends GameObject {
 		fixtureDef = new FixtureDef();
 		fixtureDef.shape = circle;
 		fixtureDef.density = 0.5f;
-		fixtureDef.friction = 0.4f;
+		fixtureDef.friction = 0.0f;
 		fixtureDef.restitution = NORMAL_RESTITUTION; // Make it bounce a little bit
 
 		// Create our fixture and attach it to the body
@@ -70,6 +70,7 @@ public class Player extends GameObject {
 		// Remember to dispose of any shapes after you're done with them!
 		// BodyDef and FixtureDef don't need disposing, but shapes do.
 		circle.dispose();
+		getBody().setFixedRotation(true);
 	}
 
 	public void draw(SpriteBatch batch) {
@@ -106,10 +107,10 @@ public class Player extends GameObject {
 	}
 
 	public void generalUpdate(Input input) {
-		if(Math.abs(getBody().getLinearVelocity().y) > MAX_Y_SPEED)
-			getBody().setLinearVelocity(getBody().getLinearVelocity().x, MAX_Y_SPEED*Math.abs(getBody().getLinearVelocity().y)/getBody().getLinearVelocity().y);
-		if(Math.abs(getBody().getLinearVelocity().x) > MAX_X_SPEED)
-			getBody().setLinearVelocity(MAX_X_SPEED*Math.abs(getBody().getLinearVelocity().x)/getBody().getLinearVelocity().x,getBody().getLinearVelocity().y);
+//		if(Math.abs(getBody().getLinearVelocity().y) > MAX_Y_SPEED)
+//			getBody().setLinearVelocity(getBody().getLinearVelocity().x, MAX_Y_SPEED*Math.abs(getBody().getLinearVelocity().y)/getBody().getLinearVelocity().y);
+//		if(Math.abs(getBody().getLinearVelocity().x) > MAX_X_SPEED)
+//			getBody().setLinearVelocity(MAX_X_SPEED*Math.abs(getBody().getLinearVelocity().x)/getBody().getLinearVelocity().x,getBody().getLinearVelocity().y);
 		switch (Gdx.app.getType()) {
 		case Desktop:
 			if (input.isKeyPressed(Keys.D))
