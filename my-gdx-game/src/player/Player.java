@@ -5,6 +5,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
@@ -26,7 +27,13 @@ public class Player extends GameObject {
 	private FixtureDef fixtureDef;
 	private Fixture fixture;
 	
+	private boolean jump = false;
+	private final float JUMP_SPEED = 1.5f;
 	private final float MAX_X_SPEED = 1;
+	private final float MAX_Y_SPEED = 10;
+	private final float MIN_Y_SPEED = 5;
+	private final float JUMP_RESTITUTION = 1.2f;
+	private final float NORMAL_RESTITUTION = 0.6f;
 
 	public Player(World world) {
 		this.world = world;
@@ -54,7 +61,7 @@ public class Player extends GameObject {
 		fixtureDef.shape = circle;
 		fixtureDef.density = 0.5f;
 		fixtureDef.friction = 0.4f;
-		fixtureDef.restitution = 0.6f; // Make it bounce a little bit
+		fixtureDef.restitution = NORMAL_RESTITUTION; // Make it bounce a little bit
 
 		// Create our fixture and attach it to the body
 		fixture = body.createFixture(fixtureDef);
@@ -99,12 +106,20 @@ public class Player extends GameObject {
 	}
 
 	public void generalUpdate(Input input) {
+		if(Math.abs(getBody().getLinearVelocity().y) > MAX_Y_SPEED)
+			getBody().setLinearVelocity(getBody().getLinearVelocity().x, MAX_Y_SPEED*Math.abs(getBody().getLinearVelocity().y)/getBody().getLinearVelocity().y);
+		if(Math.abs(getBody().getLinearVelocity().x) > MAX_X_SPEED)
+			getBody().setLinearVelocity(MAX_X_SPEED*Math.abs(getBody().getLinearVelocity().x)/getBody().getLinearVelocity().x,getBody().getLinearVelocity().y);
 		switch (Gdx.app.getType()) {
 		case Desktop:
 			if (input.isKeyPressed(Keys.D))
 				getBody().applyForceToCenter(MAX_X_SPEED, 0, true);
 			if (input.isKeyPressed(Keys.A))
 				getBody().applyForceToCenter(-MAX_X_SPEED, 0, true);
+			if (input.isKeyPressed(Keys.SPACE))
+				getBody().getFixtureList().get(0).setRestitution(JUMP_RESTITUTION);
+			else
+				getBody().getFixtureList().get(0).setRestitution(NORMAL_RESTITUTION);
 			break;
 		case Android:
 
@@ -114,14 +129,26 @@ public class Player extends GameObject {
 	}
 
 	@Override
-	public void beginContactWith(GameObject gameObject) {
+	public void beginContactWith(GameObject gameObject, Vector2 normal) {
 		// TODO Auto-generated method stub
-
+//		if(jump)
+//			getBody().getFixtureList().get(0).setRestitution(JUMP_RESTITUTION);
+//		else
+//			getBody().getFixtureList().get(0).setRestitution(NORMAL_RESTITUTION);
 	}
 
 	@Override
-	public void endContactWith(GameObject gameObject) {
+	public void endContactWith(GameObject gameObject, Vector2 normal) {
+		System.out.println( "normal X: " + normal.x + " normal Y: " + normal.y);
+		System.out.println( "player X: " + getBody().getPosition().x + " player Y" + getBody().getPosition().y);
+			
 		// TODO Auto-generated method stub
-
+//		System.out.println("x " + normal.x + " y " + normal.y);
+//		if(normal.x == 0){
+//			if(Math.abs(getBody().getLinearVelocity().y) < MIN_Y_SPEED)
+//				getBody().setLinearVelocity(getBody().getLinearVelocity().x, MIN_Y_SPEED);
+//			else if(Math.abs(getBody().getLinearVelocity().y) > MAX_Y_SPEED)
+//				getBody().setLinearVelocity(getBody().getLinearVelocity().x, MAX_Y_SPEED);
+//		}
 	}
 }

@@ -103,16 +103,16 @@ public class GameScreen implements Screen {
 	    	public void beginContact(Contact contact) {
 	    		Fixture fixtureA = contact.getFixtureA();
 	    		Fixture fixtureB = contact.getFixtureB();
-	    		((GameObject) fixtureA.getUserData()).beginContactWith((GameObject) fixtureB.getUserData());
-	    		((GameObject) fixtureB.getUserData()).beginContactWith((GameObject) fixtureA.getUserData());
+	    		((GameObject) fixtureA.getUserData()).beginContactWith((GameObject) fixtureB.getUserData(), contact.getWorldManifold().getPoints()[0]);
+	    		((GameObject) fixtureB.getUserData()).beginContactWith((GameObject) fixtureA.getUserData(), contact.getWorldManifold().getPoints()[0]);
 	        }
 
 	    	@Override
 	        public void endContact(Contact contact) {
 	            Fixture fixtureA = contact.getFixtureA();
 	            Fixture fixtureB = contact.getFixtureB();
-	    		((GameObject) fixtureA.getUserData()).endContactWith((GameObject) fixtureB.getUserData());
-	    		((GameObject) fixtureB.getUserData()).endContactWith((GameObject) fixtureA.getUserData());
+	    		((GameObject) fixtureA.getUserData()).endContactWith((GameObject) fixtureB.getUserData(), contact.getWorldManifold().getPoints()[0]);
+	    		((GameObject) fixtureB.getUserData()).endContactWith((GameObject) fixtureA.getUserData(), contact.getWorldManifold().getPoints()[0]);
 	        }
 
 	        @Override

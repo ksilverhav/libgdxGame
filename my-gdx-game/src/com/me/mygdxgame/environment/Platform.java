@@ -1,5 +1,6 @@
 package com.me.mygdxgame.environment;
 
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
@@ -31,13 +32,13 @@ public class Platform extends GameObject {
 	}
 
 	@Override
-	public void beginContactWith(GameObject gameObject) {
+	public void beginContactWith(GameObject gameObject, Vector2 normal) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void endContactWith(GameObject gameObject) {
+	public void endContactWith(GameObject gameObject, Vector2 normal) {
 		// TODO Auto-generated method stub
 
 	}
