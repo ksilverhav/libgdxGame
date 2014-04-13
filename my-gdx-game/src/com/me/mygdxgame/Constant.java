@@ -5,4 +5,6 @@ public class Constant {
 	public static final float BOX_TO_WORLD = 100f;
 	public static final float PLAYER_WIDTH = 32f;
 	public static final float PLAYER_HEIGHT = 32f;
+	public static final float TILE_WIDTH = 32f;
+	public static final float TILE_HEIGHT = 32f;
 }
