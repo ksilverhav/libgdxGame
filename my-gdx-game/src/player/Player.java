@@ -32,6 +32,9 @@ public class Player extends GameObject {
 	private final float MAX_X_SPEED = 1;
 	private final float MAX_Y_SPEED = 10;
 	private final float MIN_Y_SPEED = 5;
+	private final float MAX_SPEED = 10;
+	private final float BOUNCE_OFFSET = 0.08f;
+	private final float MAX_SPEED_SQUARED = MAX_SPEED * MAX_SPEED;
 	private final float JUMP_RESTITUTION = 1.2f;
 	private final float NORMAL_RESTITUTION = 0.6f;
 
@@ -111,6 +114,8 @@ public class Player extends GameObject {
 //			getBody().setLinearVelocity(getBody().getLinearVelocity().x, MAX_Y_SPEED*Math.abs(getBody().getLinearVelocity().y)/getBody().getLinearVelocity().y);
 //		if(Math.abs(getBody().getLinearVelocity().x) > MAX_X_SPEED)
 //			getBody().setLinearVelocity(MAX_X_SPEED*Math.abs(getBody().getLinearVelocity().x)/getBody().getLinearVelocity().x,getBody().getLinearVelocity().y);
+		if(getBody().getLinearVelocity().dot(getBody().getLinearVelocity()) > MAX_SPEED_SQUARED)
+			getBody().setLinearVelocity(getBody().getLinearVelocity().nor().scl(MAX_SPEED));
 		switch (Gdx.app.getType()) {
 		case Desktop:
 			if (input.isKeyPressed(Keys.D))
@@ -131,16 +136,13 @@ public class Player extends GameObject {
 
 	@Override
 	public void beginContactWith(GameObject gameObject, Vector2 normal) {
-		// TODO Auto-generated method stub
-//		if(jump)
-//			getBody().getFixtureList().get(0).setRestitution(JUMP_RESTITUTION);
-//		else
-//			getBody().getFixtureList().get(0).setRestitution(NORMAL_RESTITUTION);
+		
 	}
 
 	@Override
 	public void endContactWith(GameObject gameObject, Vector2 normal) {
-			
+		if(normal.y < (getBody().getPosition().y - BOUNCE_OFFSET) & Math.abs(getBody().getLinearVelocity().y) < MIN_Y_SPEED)
+			getBody().setLinearVelocity(getBody().getLinearVelocity().x, MIN_Y_SPEED);
 		
 	}
 }
