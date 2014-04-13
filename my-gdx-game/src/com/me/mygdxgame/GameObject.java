@@ -1,6 +1,6 @@
 package com.me.mygdxgame;
 
-public class GameObject {
-	public void beginContactWith(GameObject gameObject){}
-	public void endContactWith(GameObject gameObject){}
+public abstract class GameObject {
+	public abstract void beginContactWith(GameObject gameObject);
+	public abstract void endContactWith(GameObject gameObject);
 }

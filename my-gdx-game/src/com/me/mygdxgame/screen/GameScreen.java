@@ -43,8 +43,7 @@ public class GameScreen implements Screen {
 	private World world;
 	private Matrix4 debugMatrix;
 	// Rendering Box2D gfx
-	Box2DDebugRenderer debugRenderer = new Box2DDebugRenderer();
-	Matrix4 box2dCamera;
+	private Box2DDebugRenderer debugRenderer = new Box2DDebugRenderer();
 	boolean debug = true;
 
 	public GameScreen() {
@@ -54,11 +53,9 @@ public class GameScreen implements Screen {
 		world = new World(new Vector2(0, -10), true);
 		// Create player, sending world to be able to create physical body
 		player = new Player(world);
+		// ArrayList that holds all platforms
 		platforms = new ArrayList<Platform>();
-
-		float w = Gdx.graphics.getWidth();
-		float h = Gdx.graphics.getHeight();
-		
+		// Loading the testmap
 		map = new TmxMapLoader().load("environment/trollemap.tmx");
 		mapRenderer = new OrthogonalTiledMapRenderer(map);
 		createObjectsFromMap(map);
@@ -67,22 +64,6 @@ public class GameScreen implements Screen {
 		camera.setToOrtho(false, 1920, 1080);
 
 		createCollisionListener();
-	}
-
-	private void createObjectsFromMap(TiledMap map){
-		
-		
-		blocks = (TiledMapTileLayer) map.getLayers().get("Tile Layer 1");
-		for(int x = 0; x < blocks.getWidth(); x++){
-			for(int y = 0; y < blocks.getHeight(); y++){
-				if(blocks.getCell(x, y) != null){
-					// Checks the properties of the tile and creates a platform if the type is "solid"
-					if(blocks.getCell(x, y).getTile().getProperties().get("type").equals("solid")){
-						platforms.add(new Platform((x*Constant.WORLD_TO_BOX*32)+(16*Constant.WORLD_TO_BOX), (y*Constant.WORLD_TO_BOX*32)+(16*Constant.WORLD_TO_BOX), world));
-					}
-				}
-			}
-		}
 	}
 	
 	@Override
@@ -96,8 +77,6 @@ public class GameScreen implements Screen {
 		batch.begin();
 		player.draw(batch);
 		batch.end();
-
-		
 		
 		mapRenderer.setView(camera);
 		mapRenderer.render();
@@ -160,7 +139,6 @@ public class GameScreen implements Screen {
 		debugMatrix = new Matrix4(camera.combined);
 		debugMatrix.scale(100f, 100f, 1f);
 		// debugMatrix.scale(Constants.BOX_TO_WORLD, Constants.BOX_TO_WORLD,
-		// 1f);
 
 	}
 
@@ -189,5 +167,18 @@ public class GameScreen implements Screen {
 		batch.dispose();
 		texture.dispose();
 	}
+	
+	private void createObjectsFromMap(TiledMap map){blocks = (TiledMapTileLayer) map.getLayers().get("Tile Layer 1");
+	for(int x = 0; x < blocks.getWidth(); x++){
+		for(int y = 0; y < blocks.getHeight(); y++){
+			if(blocks.getCell(x, y) != null){
+				// Checks the properties of the tile and creates a platform if the type is "solid"
+				if(blocks.getCell(x, y).getTile().getProperties().get("type").equals("solid")){
+					platforms.add(new Platform((x*Constant.WORLD_TO_BOX*32)+(16*Constant.WORLD_TO_BOX), (y*Constant.WORLD_TO_BOX*32)+(16*Constant.WORLD_TO_BOX), world));
+				}
+			}
+		}
+	}
+}
 
 }
