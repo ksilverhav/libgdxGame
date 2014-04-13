@@ -25,6 +25,7 @@ import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.World;
 import com.me.mygdxgame.Assets;
 import com.me.mygdxgame.Constant;
+import com.me.mygdxgame.GameObject;
 import com.me.mygdxgame.environment.Platform;
 
 public class GameScreen implements Screen {
@@ -110,14 +111,16 @@ public class GameScreen implements Screen {
 	    	public void beginContact(Contact contact) {
 	    		Fixture fixtureA = contact.getFixtureA();
 	    		Fixture fixtureB = contact.getFixtureB();
-	            Gdx.app.log("beginContact", "between " + fixtureA.toString() + " and " + fixtureB.toString());
+	    		((GameObject) fixtureA.getUserData()).beginContactWith((GameObject) fixtureB.getUserData());
+	    		((GameObject) fixtureB.getUserData()).beginContactWith((GameObject) fixtureA.getUserData());
 	        }
 
-	        @Override
+	    	@Override
 	        public void endContact(Contact contact) {
 	            Fixture fixtureA = contact.getFixtureA();
 	            Fixture fixtureB = contact.getFixtureB();
-	            Gdx.app.log("endContact", "between " + fixtureA.toString() + " and " + fixtureB.toString());
+	    		((GameObject) fixtureA.getUserData()).endContactWith((GameObject) fixtureB.getUserData());
+	    		((GameObject) fixtureB.getUserData()).endContactWith((GameObject) fixtureA.getUserData());
 	        }
 
 	        @Override

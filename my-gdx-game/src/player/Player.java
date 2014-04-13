@@ -11,8 +11,9 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
 import com.me.mygdxgame.Assets;
 import com.me.mygdxgame.Constant;
+import com.me.mygdxgame.GameObject;
 
-public class Player {
+public class Player extends GameObject {
 	private Sprite sprite;
 	private Body body;
 	private World world;

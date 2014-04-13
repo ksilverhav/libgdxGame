@@ -5,9 +5,10 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.me.mygdxgame.Constant;
+import com.me.mygdxgame.GameObject;
 
 
-public class Platform {
+public class Platform extends GameObject {
 	
 	private BodyDef groundBodyDef;
 	private Body groundBody;
@@ -25,6 +26,7 @@ public class Platform {
 		groundBody = world.createBody(groundBodyDef);
 		groundBox.setAsBox((32*Constant.WORLD_TO_BOX)/2, (32*Constant.WORLD_TO_BOX)/2);
 		groundBody.createFixture(groundBox, 0.0f); 
+		groundBody.getFixtureList().get(0).setUserData(this);
 	}
 	
 }
