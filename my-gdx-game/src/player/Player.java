@@ -140,16 +140,7 @@ public class Player extends GameObject {
 
 	@Override
 	public void endContactWith(GameObject gameObject, Vector2 normal) {
-		System.out.println( "normal X: " + normal.x + " normal Y: " + normal.y);
-		System.out.println( "player X: " + getBody().getPosition().x + " player Y" + getBody().getPosition().y);
 			
-		// TODO Auto-generated method stub
-//		System.out.println("x " + normal.x + " y " + normal.y);
-//		if(normal.x == 0){
-//			if(Math.abs(getBody().getLinearVelocity().y) < MIN_Y_SPEED)
-//				getBody().setLinearVelocity(getBody().getLinearVelocity().x, MIN_Y_SPEED);
-//			else if(Math.abs(getBody().getLinearVelocity().y) > MAX_Y_SPEED)
-//				getBody().setLinearVelocity(getBody().getLinearVelocity().x, MAX_Y_SPEED);
-//		}
+		
 	}
 }
