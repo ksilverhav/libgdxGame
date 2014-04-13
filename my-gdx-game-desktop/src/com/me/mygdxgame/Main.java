@@ -12,8 +12,8 @@ public class Main {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		cfg.title = "my-gdx-game";
 		cfg.useGL20 = true;
-		cfg.width = screenSize.width-192;
-		cfg.height = screenSize.height-108;
+		cfg.width = 1280;
+		cfg.height = 720;
 		
 		new LwjglApplication(new MyGdxGame(), cfg);
 	}
