@@ -1,4 +1,6 @@
-package com.me.mygdxgame;
+package com.me.mygdxgame.screen;
+
+import java.util.ArrayList;
 
 import player.Player;
 
@@ -15,22 +17,24 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
-import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
+import com.me.mygdxgame.Assets;
+import com.me.mygdxgame.Constant;
+import com.me.mygdxgame.environment.Platform;
 
 public class GameScreen implements Screen {
 	private OrthographicCamera camera;
 	private OrthogonalTiledMapRenderer mapRenderer;
 	private TiledMap map;
 	private TiledMapTileLayer blocks;
+	
+	private ArrayList<Platform> platforms;
 
 	private SpriteBatch batch;
 	private Texture texture;
@@ -49,6 +53,7 @@ public class GameScreen implements Screen {
 		world = new World(new Vector2(0, -10), true);
 		// Create player, sending world to be able to create physical body
 		player = new Player(world);
+		platforms = new ArrayList<Platform>();
 
 		float w = Gdx.graphics.getWidth();
 		float h = Gdx.graphics.getHeight();
@@ -64,26 +69,17 @@ public class GameScreen implements Screen {
 	}
 
 	private void createObjectsFromMap(TiledMap map){
-		BodyDef groundBodyDef = new BodyDef();
-		groundBodyDef.type = BodyDef.BodyType.StaticBody;
-		
-		
 		
 		
 		blocks = (TiledMapTileLayer) map.getLayers().get("Tile Layer 1");
 		for(int x = 0; x < blocks.getWidth(); x++){
 			for(int y = 0; y < blocks.getHeight(); y++){
 				if(blocks.getCell(x, y) != null){
+					// Checks the properties of the tile and creates a platform if the type is "solid"
 					if(blocks.getCell(x, y).getTile().getProperties().get("type").equals("solid")){
-						groundBodyDef.position.set((x*Constant.WORLD_TO_BOX*32)+(16*Constant.WORLD_TO_BOX), (y*Constant.WORLD_TO_BOX*32)+(16*Constant.WORLD_TO_BOX));
-						Body groundBody = world.createBody(groundBodyDef);
-						
-						PolygonShape groundBox = new PolygonShape(); 
-						groundBox.setAsBox((32*Constant.WORLD_TO_BOX)/2, (32*Constant.WORLD_TO_BOX)/2);
-						groundBody.createFixture(groundBox, 0.0f); 
+						platforms.add(new Platform((x*Constant.WORLD_TO_BOX*32)+(16*Constant.WORLD_TO_BOX), (y*Constant.WORLD_TO_BOX*32)+(16*Constant.WORLD_TO_BOX), world));
 					}
 				}
-				
 			}
 		}
 	}
