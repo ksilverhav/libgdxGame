@@ -4,6 +4,7 @@ import player.Player;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -39,6 +40,7 @@ public class GameScreen implements Screen {
 	// Rendering Box2D gfx
 	Box2DDebugRenderer debugRenderer = new Box2DDebugRenderer();
 	Matrix4 box2dCamera;
+	boolean debug = true;
 
 	public GameScreen() {
 		// Load assets
@@ -91,7 +93,7 @@ public class GameScreen implements Screen {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.setProjectionMatrix(camera.combined);
-
+		generalUpdate();
 		camera.update();
 
 		batch.begin();
@@ -102,9 +104,20 @@ public class GameScreen implements Screen {
 		
 		mapRenderer.setView(camera);
 		mapRenderer.render();
-		debugRenderer.render(world, debugMatrix);
+		
+		if(debug)
+			debugRenderer.render(world, debugMatrix);
 		// Simulate Box2D world
 		world.step(1 / 60f, 6, 2);
+	}
+
+	private void generalUpdate() {
+		player.generalUpdate(Gdx.input);
+		// Turn on and off Box2D debugging
+		if(Gdx.input.isKeyPressed(Keys.F1))
+			debug =false;
+		if(Gdx.input.isKeyPressed(Keys.F2))
+			debug =true;
 	}
 
 	private void createCollisionListener() {
