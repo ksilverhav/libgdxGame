@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import player.Player;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -28,6 +28,7 @@ import com.me.mygdxgame.Assets;
 import com.me.mygdxgame.Constant;
 import com.me.mygdxgame.GameObject;
 import com.me.mygdxgame.environment.Platform;
+import com.me.mygdxgame.environment.WorldFactory;
 
 public class GameScreen implements Screen {
 	private OrthographicCamera camera;
@@ -41,6 +42,7 @@ public class GameScreen implements Screen {
 	private Texture texture;
 	private Player player;
 	private World world;
+	private WorldFactory worldFactory;
 	private Matrix4 debugMatrix;
 	// Rendering Box2D gfx
 	private Box2DDebugRenderer debugRenderer = new Box2DDebugRenderer();
@@ -51,6 +53,7 @@ public class GameScreen implements Screen {
 		Assets.load();
 		// Create Box2d world
 		world = new World(new Vector2(0, -10), true);
+		worldFactory = new WorldFactory(world);
 		// Create player, sending world to be able to create physical body
 		player = new Player(world);
 		// ArrayList that holds all platforms
@@ -173,12 +176,16 @@ public class GameScreen implements Screen {
 		for(int y = 0; y < blocks.getHeight(); y++){
 			if(blocks.getCell(x, y) != null){
 				// Checks the properties of the tile and creates a platform if the type is "solid"
-				if(blocks.getCell(x, y).getTile().getProperties().get("type").equals("solid")){
-					platforms.add(new Platform((x*Constant.WORLD_TO_BOX*32)+(16*Constant.WORLD_TO_BOX), (y*Constant.WORLD_TO_BOX*32)+(16*Constant.WORLD_TO_BOX), world));
+				if(blocks.getCell(x, y).getTile().getProperties().get("type").equals("platform")){
+					addPlatform(worldFactory.createPlatform((x*Constant.WORLD_TO_BOX*32)+(16*Constant.WORLD_TO_BOX), (y*Constant.WORLD_TO_BOX*32)+(16*Constant.WORLD_TO_BOX), (String) blocks.getCell(x, y).getTile().getProperties().get("shape")));
 				}
+				
 			}
 		}
 	}
 }
+	private void addPlatform(Platform platform){
+		platforms.add(platform);
+	}
 
 }
