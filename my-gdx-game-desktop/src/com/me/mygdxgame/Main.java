@@ -1,5 +1,6 @@
 package com.me.mygdxgame;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 
@@ -8,8 +9,8 @@ public class Main {
 		LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
 		cfg.title = "my-gdx-game";
 		cfg.useGL20 = true;
-		cfg.width = 1920;
-		cfg.height = 1080;
+		cfg.width = 1000;
+		cfg.height = 500;
 		
 		new LwjglApplication(new MyGdxGame(), cfg);
 	}
