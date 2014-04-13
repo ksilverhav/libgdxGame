@@ -22,7 +22,7 @@ public class WorldFactory {
 		Platform form = null;
 		setupGroundBody(x, y, BodyDef.BodyType.StaticBody);
 		
-		// Creates different platofrms depending on the Shape
+		// Creates different platforms depending on the Shape
 		if(shape.equals("L45") || shape.equals("R45")){
 			form = new SlopePlatform(x, y, groundBody, shape, groundBox);
 		} else if(shape.equals("box")){

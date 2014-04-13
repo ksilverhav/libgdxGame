@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="60" height="34" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="grass" tilewidth="32" tileheight="32">
+  <image source="grass.png" trans="ff00ff" width="32" height="32"/>
+  <tile id="0">
+   <properties>
+    <property name="shape" value="box"/>
+    <property name="type" value="platform"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="2" name="grass-L45" tilewidth="32" tileheight="32">
+  <image source="grass-L45.png" trans="ff00ff" width="32" height="32"/>
+  <tile id="0">
+   <properties>
+    <property name="shape" value="L45"/>
+    <property name="type" value="platform"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="3" name="grass-R45" tilewidth="32" tileheight="32">
+  <image source="grass-R45.png" trans="ff00ff" width="32" height="32"/>
+  <tile id="0">
+   <properties>
+    <property name="shape" value="R45"/>
+    <property name="type" value="platform"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="Tile Layer 1" width="60" height="34">
+  <data encoding="base64" compression="zlib">
+   eJzt2NEKgCAMBVC1///n8CGIkGrLzbt1L/iWuWNho1pKqT8bUfK1VnqxQ698Pr24oVc+n9688fAi9TXRvNHf5014fXRvX1tizuCVmBG9TbH+2xrQvE14v8jew2rlle7l3XqaeaNarM4DzV6OMstrmZl7ie69Wlf9v0LoDTVZ/f3t6c9Q2mdpg+D1rIHe3KE3dzy8nufvU6y9534BwWzpHfVGq80e/T2S2aI35cAaO7aSAXg=
+  </data>
+ </layer>
+</map>

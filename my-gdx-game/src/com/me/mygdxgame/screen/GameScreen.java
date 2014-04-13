@@ -59,7 +59,7 @@ public class GameScreen implements Screen {
 		// ArrayList that holds all platforms
 		platforms = new ArrayList<Platform>();
 		// Loading the testmap
-		map = new TmxMapLoader().load("environment/trollemap.tmx");
+		map = new TmxMapLoader().load("environment/dogemap.tmx");
 		mapRenderer = new OrthogonalTiledMapRenderer(map);
 		createObjectsFromMap(map);
 		
