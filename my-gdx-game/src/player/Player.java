@@ -1,5 +1,8 @@
 package player;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -19,6 +22,7 @@ public class Player extends GameObject {
 	private World world;
 	private int width;
 	private int height;
+	private final float MAX_X_SPEED=1;
 	public Player(World world)
 	{
 		this.world = world;
@@ -77,5 +81,20 @@ public class Player extends GameObject {
 	}
 	public void setBody(Body body) {
 		this.body = body;
+	}
+	public void generalUpdate(Input input) {
+		switch(Gdx.app.getType())
+		{
+		case Desktop:
+			if(input.isKeyPressed(Keys.D))
+				getBody().applyForceToCenter(MAX_X_SPEED, 0, true);
+			if(input.isKeyPressed(Keys.A))
+				getBody().applyForceToCenter(-MAX_X_SPEED, 0, true);
+			break;
+		case Android:
+			
+			break;
+		default:
+	}
 	}
 }

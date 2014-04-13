@@ -1,0 +1,7 @@
+Todo:
+
+* Ta Antonts bilnycklar
+* Knulla Anton i röven
+
+* Alla objekt i miljön ska ärva från en class. ex: GameObject så att alla kan ha en collisionfunktion
+* Skicka med objektet i sin fixture så att collision collider kan kalla på det objektets kollisionsfunktion som finns i exempelvis GameObjekt-klassen alternativt underklass
