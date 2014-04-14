@@ -24,7 +24,7 @@ void main() {
 		vec4 color = texture2D(u_texture, v_texCoords);
 		vec2 pos = vec2(v_playerPos.x/1920 - gl_FragCoord.x/1280, v_playerPos.y/1080 - gl_FragCoord.y/720);
 		float len = length(pos);
-		float vignette = smoothstep(.5, .4, len*(1 + rand(v_playerPos.xy)));
+		float vignette = smoothstep(.5, .4, len*2);
 		color.rgb = mix(color.rgb, color.rgb * vignette, .7);
 		gl_FragColor = color;
 		
