@@ -184,7 +184,6 @@ public class Player extends GameObject {
 	}
 
 	public void endContact(Contact contact, Input input) {
-		System.out.println(getBody().getLinearVelocity().y);
 		if(getBody().getLinearVelocity().y > MAX_Y_SPEED)
 			getBody().setLinearVelocity(getBody().getLinearVelocity().x, MAX_Y_SPEED);
 		
