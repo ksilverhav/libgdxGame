@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="60" height="33" tilewidth="32" tileheight="32">
+<map version="1.0" orientation="orthogonal" width="60" height="34" tilewidth="32" tileheight="32">
  <tileset firstgid="1" name="grass" tilewidth="32" tileheight="32">
   <image source="grass.png" width="32" height="32"/>
  </tileset>
@@ -9,23 +9,32 @@
  <tileset firstgid="3" name="grass-R45" tilewidth="32" tileheight="32">
   <image source="grass-R45.png" width="32" height="32"/>
  </tileset>
- <layer name="Tile Layer 1" width="60" height="33">
+ <tileset firstgid="4" name="platformspritesheet" tilewidth="32" tileheight="32">
+  <image source="platformspritesheet.png" width="160" height="128"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="60" height="34">
   <data encoding="base64" compression="zlib">
-   eJzt2cEJACAMBMFE++9ZP7bgwWYX7i0D+dlV1cM2Jb3s9LLTy04vO73s9LLTy04vO73s9LLTy04vO73s9LJLeNfd/vzmK+FN3lT6HzaxAy8BAL4=
+   eJztmMkOwyAMROfQle45tP//p4VDpB5wWrk2IGeeNMfYPIktJAC3lSTlnLAejqBvZOgbG/rGhr6xoW9s6Bsb+tryyNlWMjn2XMLb94n6f+jLsecSnM+xGd13g/r6L9kp6ml9pX3Iei+6Qn6LuivqaX3Ld0nIyPNF63uG/P53MRudPaOvX2voG5tWvvucQ4M+32jhW1znvbu3s7fvp+sIzt6+0jndC/ra16dvP+bxSHf/fyPdsb36/TKeN3z2Cvc=
   </data>
  </layer>
- <objectgroup name="physics" width="60" height="33">
-  <object x="1" y="1025" width="1920" height="36"/>
-  <object x="896" y="1025" width="48"/>
-  <object x="896" y="992" width="62" height="33"/>
-  <object x="927" y="962">
-   <polygon points="0,0 -29,30 31,30 30,30"/>
-  </object>
+ <objectgroup name="physics" width="60" height="34">
   <object x="0" y="0" width="1921" height="33"/>
-  <object x="0" y="35" width="31" height="991"/>
-  <object x="1888" y="33" width="32" height="989"/>
-  <object x="660" y="352">
-   <polygon points="0,0 732,74 802,316 52,440 -224,80 -204,-88 -192,-246 214,-44"/>
+  <object x="0" y="35" width="31" height="1023"/>
+  <object x="1888" y="33" width="33" height="1024"/>
+  <object x="1248" y="608" width="254" height="63"/>
+  <object x="448" y="640" width="192" height="95"/>
+  <object x="640" y="641">
+   <polygon points="0,0 17,0 30,11 32,62 0,95"/>
+  </object>
+  <object x="447" y="735">
+   <polygon points="0,0 -31,-31 -31,-80 -25,-88 -14,-93 1,-94"/>
+  </object>
+  <object x="752" y="480">
+   <polygon points="0,0 191,0 206,11 206,49 194,63 -2,63 -16,49 -15,10"/>
+  </object>
+  <object x="1" y="1057" width="1917" height="32"/>
+  <object x="928" y="1056">
+   <polygon points="0,0 0,-131 -96,-224 -192,-129 -191,1"/>
   </object>
  </objectgroup>
 </map>

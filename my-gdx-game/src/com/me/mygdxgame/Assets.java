@@ -6,7 +6,9 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 
 public class Assets {
 	public static Sprite spritePlayer;
+	public static Sprite spriteBackground;
 	public static void load(){
 		spritePlayer = new Sprite(new Texture(Gdx.files.internal("player/player.png")));
+		spriteBackground = new Sprite(new Texture(Gdx.files.internal("environment/background.png")));
 	}
 }

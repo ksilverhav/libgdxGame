@@ -32,7 +32,7 @@ public class Player extends GameObject {
 	private final float JUMP_SPEED = 1.5f;
 	private final float MAX_X_SPEED = 10;
 	private final float MAX_Y_SPEED = 10;
-	private final float MIN_Y_SPEED = 5;
+	private final float MIN_Y_SPEED = 0;
 	private final float MAX_SPEED = 10;
 	private final float BOUNCE_OFFSET = 0.08f;
 	private final float MAX_SPEED_SQUARED = MAX_SPEED * MAX_SPEED;

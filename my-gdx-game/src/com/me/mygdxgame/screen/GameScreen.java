@@ -47,7 +47,7 @@ public class GameScreen implements Screen {
 	private Matrix4 debugMatrix;
 	// Rendering Box2D gfx
 	private Box2DDebugRenderer debugRenderer = new Box2DDebugRenderer();
-	boolean debug = true;
+	boolean debug = false;
 
 	public GameScreen() {
 		// Load assets
@@ -73,13 +73,14 @@ public class GameScreen implements Screen {
 	
 	@Override
 	public void render(float delta) {
-		Gdx.gl.glClearColor(0, 0, 0, 1);
+		Gdx.gl.glClearColor(0.2f, 0.3f, 0.34f, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.setProjectionMatrix(camera.combined);
 		generalUpdate();
 		camera.update();
 
 		batch.begin();
+		Assets.spriteBackground.draw(batch);
 		player.draw(batch);
 		batch.end();
 		
