@@ -53,7 +53,7 @@ public class GameScreen implements Screen {
 		// Load assets
 		Assets.load();
 		// Create Box2d world
-		world = new World(new Vector2(0, -10), true);
+		world = new World(new Vector2(0, -20), true);
 		worldFactory = new WorldFactory(world);
 		// Create player, sending world to be able to create physical body
 		player = new Player(world);
@@ -115,6 +115,7 @@ public class GameScreen implements Screen {
 
 	    	@Override
 	        public void endContact(Contact contact) {
+	    		player.endContact(contact, Gdx.input);
 	            Fixture fixtureA = contact.getFixtureA();
 	            Fixture fixtureB = contact.getFixtureB();
 	    		((GameObject) fixtureA.getUserData()).endContactWith((GameObject) fixtureB.getUserData(), contact.getWorldManifold().getPoints()[0]);

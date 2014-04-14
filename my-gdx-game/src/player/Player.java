@@ -30,7 +30,7 @@ public class Player extends GameObject {
 	
 	private boolean jump = false;
 	private final float JUMP_SPEED = 1.5f;
-	private final float MAX_X_SPEED = 1;
+	private final float MAX_X_SPEED = 10;
 	private final float MAX_Y_SPEED = 10;
 	private final float MIN_Y_SPEED = 5;
 	private final float MAX_SPEED = 10;
@@ -113,15 +113,17 @@ public class Player extends GameObject {
 	public void generalUpdate(Input input) {
 //		if(Math.abs(getBody().getLinearVelocity().y) > MAX_Y_SPEED)
 //			getBody().setLinearVelocity(getBody().getLinearVelocity().x, MAX_Y_SPEED*Math.abs(getBody().getLinearVelocity().y)/getBody().getLinearVelocity().y);
-//		if(Math.abs(getBody().getLinearVelocity().x) > MAX_X_SPEED)
-//			getBody().setLinearVelocity(MAX_X_SPEED*Math.abs(getBody().getLinearVelocity().x)/getBody().getLinearVelocity().x,getBody().getLinearVelocity().y);
+		if(Math.abs(getBody().getLinearVelocity().x) > MAX_X_SPEED)
+			getBody().setLinearVelocity(MAX_X_SPEED*Math.abs(getBody().getLinearVelocity().x)/getBody().getLinearVelocity().x,getBody().getLinearVelocity().y);
 
+		
+		
 		switch (Gdx.app.getType()) {
 		case Desktop:
 			if (input.isKeyPressed(Keys.D))
-				getBody().applyForceToCenter(MAX_X_SPEED, 0, false);
+				getBody().applyForceToCenter(0.8f, 0, false);
 			if (input.isKeyPressed(Keys.A))
-				getBody().applyForceToCenter(-MAX_X_SPEED, 0, false);
+				getBody().applyForceToCenter(-0.8f, 0, false);
 
 		case Android:
 
@@ -171,6 +173,14 @@ public class Player extends GameObject {
 	public void endContactWith(GameObject gameObject, Vector2 normal) {
 //		if(normal.y < (getBody().getPosition().y - BOUNCE_OFFSET) & Math.abs(getBody().getLinearVelocity().y) < MIN_Y_SPEED)
 //			getBody().setLinearVelocity(getBody().getLinearVelocity().x, MIN_Y_SPEED);
+		
+	}
+
+	public void endContact(Contact contact, Input input) {
+		System.out.println(getBody().getLinearVelocity().y);
+		if(getBody().getLinearVelocity().y > MAX_Y_SPEED)
+			getBody().setLinearVelocity(getBody().getLinearVelocity().x, MAX_Y_SPEED);
+		
 		
 	}
 }
