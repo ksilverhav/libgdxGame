@@ -143,7 +143,7 @@ public class Player extends GameObject {
 				if(input.isKeyPressed(Keys.SPACE))
 				{
 					jump(contact);
-					getBody().getFixtureList().get(0).setFriction(0);
+					getBody().getFixtureList().get(0).setFriction(0.1f);
 				}
 				else
 				{
@@ -163,7 +163,7 @@ public class Player extends GameObject {
 	}
 	private void jump(Contact contact)
 	{
-
+		
 		contact.setRestitution(1.1f);
 //		
 //		if(getBody().getLinearVelocity().y < -MAX_Y_SPEED)

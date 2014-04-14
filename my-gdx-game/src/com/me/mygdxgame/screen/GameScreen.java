@@ -16,8 +16,10 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
@@ -79,6 +81,13 @@ public class GameScreen implements Screen {
 	
 	@Override
 	public void render(float delta) {
+		// Shader
+		
+		shader.begin();
+		 int a = shader.getUniformLocation("u_playerPos");
+		 
+		 shader.setUniformf(a ,player.getBody().getPosition().x*Constant.BOX_TO_WORLD, player.getBody().getPosition().y*Constant.BOX_TO_WORLD,0);
+		shader.end();
 		Gdx.gl.glClearColor(0.2f, 0.3f, 0.34f, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.setProjectionMatrix(camera.combined);
@@ -155,7 +164,17 @@ public class GameScreen implements Screen {
 		// debugMatrix.scale(Constants.BOX_TO_WORLD, Constants.BOX_TO_WORLD,
 		// Shader
 		shader = new ShaderProgram(Gdx.files.internal("shaders/vertexshader.vs"), Gdx.files.internal("shaders/fragmentshader.fs"));
+		if(!shader.isCompiled()){
+		    String log = shader.getLog();
+		    System.out.println(log);
+		}
+		//ShaderProgram.pedantic = false;
+		// Map Renderer
+		mapRenderer.getSpriteBatch().setShader(shader);
+		// Sprite batch
 		batch.setShader(shader);
+
+		
 
 	}
 
@@ -206,3 +225,4 @@ public class GameScreen implements Screen {
 	}
 
 }
+
