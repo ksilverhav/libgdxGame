@@ -64,7 +64,7 @@ public class Player extends GameObject {
 		fixtureDef = new FixtureDef();
 		fixtureDef.shape = circle;
 		fixtureDef.density = 0.5f;
-		fixtureDef.friction = 0.3f;
+		fixtureDef.friction = 0.9f;
 		fixtureDef.restitution = NORMAL_RESTITUTION; // Make it bounce a little bit
 
 		// Create our fixture and attach it to the body
@@ -141,7 +141,14 @@ public class Player extends GameObject {
 		{
 			case Desktop:
 				if(input.isKeyPressed(Keys.SPACE))
+				{
 					jump(contact);
+					getBody().getFixtureList().get(0).setFriction(0);
+				}
+				else
+				{
+					getBody().getFixtureList().get(0).setFriction(0.9f);
+				}
 
 			break;
 			case Android:
