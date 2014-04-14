@@ -14,7 +14,7 @@
  </tileset>
  <layer name="Tile Layer 1" width="60" height="34">
   <data encoding="base64" compression="zlib">
-   eJztmE0PgyAQROdgTaQftj20//+fVg5eGhaDLgkO85I5IvtENkgAMHeSsOSKfpggX2bky418uZEvN/LlRr7cyNeX15JLIu+Kc+Z4oK7vB+n/0G/FObfo6XuOMPpa+6j1+40B6bpjxsy42JeCkT2+1vvz7kWxv1h3Uc/MOG9f7+d5413fDfb9392h3qO0vh5H+d9fliuLb2495Xt+5MvlW9KfGHxL/OR7PuRbFuvs32rWs+ue/ACkoA+D
+   eJztmE0PgyAQROfQNin97qH+/39a9+DFsLTqkuAwL5kjwhPZrCQAj06SxlzQD2fIlxn5ciNfbuTLjXy5kS838o3lNeaYybvinCXuqOv7Qf4/dKg45y96+p4NRl/vHLV+v3FAft2WU2Gc1aXkZI2v9/6ia5HVF+8u6lkYF+0b/bxootd3hX//dwtY71Za34+tzM+X58riW9pP+e4f+XL5LqlPDL5L/OS7P+T7f6wn93r/VjP1rmvyBahgD4c=
   </data>
  </layer>
  <objectgroup name="physics" width="60" height="34">

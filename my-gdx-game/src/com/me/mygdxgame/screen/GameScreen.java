@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
@@ -49,6 +50,9 @@ public class GameScreen implements Screen {
 	private Box2DDebugRenderer debugRenderer = new Box2DDebugRenderer();
 	boolean debug = false;
 
+	//Shaderprogram
+	ShaderProgram shader;
+	
 	public GameScreen() {
 		// Load assets
 		Assets.load();
@@ -69,6 +73,8 @@ public class GameScreen implements Screen {
 		camera.setToOrtho(false, 1920, 1080);
 
 		createCollisionListener();
+		
+	
 	}
 	
 	@Override
@@ -147,6 +153,9 @@ public class GameScreen implements Screen {
 		debugMatrix = new Matrix4(camera.combined);
 		debugMatrix.scale(100f, 100f, 1f);
 		// debugMatrix.scale(Constants.BOX_TO_WORLD, Constants.BOX_TO_WORLD,
+		// Shader
+		shader = new ShaderProgram(Gdx.files.internal("shaders/vertexshader.vs"), Gdx.files.internal("shaders/fragmentshader.fs"));
+		batch.setShader(shader);
 
 	}
 
