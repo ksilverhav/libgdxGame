@@ -121,9 +121,9 @@ public class Player extends GameObject {
 		switch (Gdx.app.getType()) {
 		case Desktop:
 			if (input.isKeyPressed(Keys.D))
-				getBody().applyForceToCenter(0.8f, 0, false);
+				getBody().applyForceToCenter(0.8f, 0, true);
 			if (input.isKeyPressed(Keys.A))
-				getBody().applyForceToCenter(-0.8f, 0, false);
+				getBody().applyForceToCenter(-0.8f, 0, true);
 
 		case Android:
 
