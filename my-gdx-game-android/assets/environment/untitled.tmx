@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="60" height="33" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="grass" tilewidth="32" tileheight="32">
+  <image source="grass.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="2" name="grass-L45" tilewidth="32" tileheight="32">
+  <image source="grass-L45.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="3" name="grass-R45" tilewidth="32" tileheight="32">
+  <image source="grass-R45.png" width="32" height="32"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="60" height="33">
+  <data encoding="base64" compression="zlib">
+   eJzt2cEJACAMBMFE++9ZP7bgwWYX7i0D+dlV1cM2Jb3s9LLTy04vO73s9LLTy04vO73s9LLTy04vO73s9LJLeNfd/vzmK+FN3lT6HzaxAy8BAL4=
+  </data>
+ </layer>
+ <objectgroup name="physics" width="60" height="33">
+  <object x="1" y="1025" width="1920" height="36"/>
+  <object x="896" y="1025" width="48"/>
+  <object x="896" y="992" width="62" height="33"/>
+  <object x="927" y="962">
+   <polygon points="0,0 -29,30 31,30 30,30"/>
+  </object>
+  <object x="0" y="0" width="1921" height="33"/>
+  <object x="0" y="35" width="31" height="991"/>
+  <object x="1888" y="33" width="32" height="989"/>
+  <object x="660" y="352">
+   <polygon points="0,0 732,74 802,316 52,440 -224,80 -204,-88 -192,-246 214,-44"/>
+  </object>
+ </objectgroup>
+</map>

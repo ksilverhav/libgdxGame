@@ -29,8 +29,8 @@ public class Player extends GameObject {
 	
 	private boolean jump = false;
 	private final float JUMP_SPEED = 1.5f;
-	private final float MAX_X_SPEED = 1;
-	private final float MAX_Y_SPEED = 10;
+	private final float MAX_X_SPEED = 2;
+	private final float MAX_Y_SPEED = 15;
 	private final float MIN_Y_SPEED = 5;
 	private final float MAX_SPEED = 10;
 	private final float BOUNCE_OFFSET = 0.08f;

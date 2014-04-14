@@ -27,6 +27,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.me.mygdxgame.Assets;
 import com.me.mygdxgame.Constant;
 import com.me.mygdxgame.GameObject;
+import com.me.mygdxgame.MapBodyManager;
 import com.me.mygdxgame.environment.Platform;
 import com.me.mygdxgame.environment.WorldFactory;
 
@@ -59,9 +60,10 @@ public class GameScreen implements Screen {
 		// ArrayList that holds all platforms
 		platforms = new ArrayList<Platform>();
 		// Loading the testmap
-		map = new TmxMapLoader().load("environment/dogemap.tmx");
+		map = new TmxMapLoader().load("environment/untitled.tmx");
 		mapRenderer = new OrthogonalTiledMapRenderer(map);
-		createObjectsFromMap(map);
+		createMap(map);
+		//createObjectsFromMap(map);
 		
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, 1920, 1080);
@@ -170,7 +172,10 @@ public class GameScreen implements Screen {
 		batch.dispose();
 		texture.dispose();
 	}
-	
+	private void createMap(TiledMap map)
+	{
+		(new MapBodyManager(world,100f,0)).createPhysics(map);
+	}
 	private void createObjectsFromMap(TiledMap map){blocks = (TiledMapTileLayer) map.getLayers().get("Tile Layer 1");
 	for(int x = 0; x < blocks.getWidth(); x++){
 		for(int y = 0; y < blocks.getHeight(); y++){

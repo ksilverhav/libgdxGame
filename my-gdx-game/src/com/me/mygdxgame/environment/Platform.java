@@ -10,6 +10,7 @@ public class Platform extends GameObject{
 	
 	public Platform(float x, float y, Body groundBody){
 		this.groundBody = groundBody;
+		groundBody.getFixtureList().get(0).setUserData(this);
 		 
 	}
 
