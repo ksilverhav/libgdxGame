@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="60" height="33" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="platformspritesheet" tilewidth="32" tileheight="32">
+  <image source="../../../../platformspritesheet.png" width="160" height="128"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="60" height="33">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20ON6AAAAAAAAAA4M8AHvAAAQ==
+  </data>
+ </layer>
+ <objectgroup name="physics" width="60" height="33">
+  <object x="709" y="127" width="50" height="47"/>
+  <object x="884" y="269" width="69" height="51"/>
+ </objectgroup>
+</map>
