@@ -106,6 +106,7 @@ public class GameScreen implements Screen {
 
 	    	@Override
 	    	public void beginContact(Contact contact) {
+	    		player.beginContact(contact, Gdx.input);
 	    		Fixture fixtureA = contact.getFixtureA();
 	    		Fixture fixtureB = contact.getFixtureB();
 	    		((GameObject) fixtureA.getUserData()).beginContactWith((GameObject) fixtureB.getUserData(), contact.getWorldManifold().getPoints()[0]);

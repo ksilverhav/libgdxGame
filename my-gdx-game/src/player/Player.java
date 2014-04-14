@@ -10,6 +10,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.CircleShape;
+import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
@@ -29,8 +30,8 @@ public class Player extends GameObject {
 	
 	private boolean jump = false;
 	private final float JUMP_SPEED = 1.5f;
-	private final float MAX_X_SPEED = 2;
-	private final float MAX_Y_SPEED = 15;
+	private final float MAX_X_SPEED = 1;
+	private final float MAX_Y_SPEED = 10;
 	private final float MIN_Y_SPEED = 5;
 	private final float MAX_SPEED = 10;
 	private final float BOUNCE_OFFSET = 0.08f;
@@ -63,7 +64,7 @@ public class Player extends GameObject {
 		fixtureDef = new FixtureDef();
 		fixtureDef.shape = circle;
 		fixtureDef.density = 0.5f;
-		fixtureDef.friction = 0.0f;
+		fixtureDef.friction = 0.3f;
 		fixtureDef.restitution = NORMAL_RESTITUTION; // Make it bounce a little bit
 
 		// Create our fixture and attach it to the body
@@ -114,26 +115,53 @@ public class Player extends GameObject {
 //			getBody().setLinearVelocity(getBody().getLinearVelocity().x, MAX_Y_SPEED*Math.abs(getBody().getLinearVelocity().y)/getBody().getLinearVelocity().y);
 //		if(Math.abs(getBody().getLinearVelocity().x) > MAX_X_SPEED)
 //			getBody().setLinearVelocity(MAX_X_SPEED*Math.abs(getBody().getLinearVelocity().x)/getBody().getLinearVelocity().x,getBody().getLinearVelocity().y);
-		if(getBody().getLinearVelocity().dot(getBody().getLinearVelocity()) > MAX_SPEED_SQUARED)
-			getBody().setLinearVelocity(getBody().getLinearVelocity().nor().scl(MAX_SPEED));
+
 		switch (Gdx.app.getType()) {
 		case Desktop:
 			if (input.isKeyPressed(Keys.D))
-				getBody().applyForceToCenter(MAX_X_SPEED, 0, true);
+				getBody().applyForceToCenter(MAX_X_SPEED, 0, false);
 			if (input.isKeyPressed(Keys.A))
-				getBody().applyForceToCenter(-MAX_X_SPEED, 0, true);
-			if (input.isKeyPressed(Keys.SPACE))
-				getBody().getFixtureList().get(0).setRestitution(JUMP_RESTITUTION);
-			else
-				getBody().getFixtureList().get(0).setRestitution(NORMAL_RESTITUTION);
-			break;
+				getBody().applyForceToCenter(-MAX_X_SPEED, 0, false);
+
 		case Android:
 
 			break;
 		default:
 		}
 	}
+	public void beginContact(Contact contact, Input input)
+	{
+		// Restrict Y-speed
+		// Check if android or desktop
+		if(getBody().getLinearVelocity().y > -MIN_Y_SPEED && getBody().getLinearVelocity().y < 0)
+			getBody().setLinearVelocity(new Vector2(getBody().getLinearVelocity().x,-MIN_Y_SPEED));
+		switch(Gdx.app.getType())
+		{
+			case Desktop:
+				if(input.isKeyPressed(Keys.SPACE))
+					jump(contact);
 
+			break;
+			case Android:
+				if((input.isTouched(0) && input.getX(0) < Gdx.graphics.getWidth() - Gdx.graphics.getWidth()/3 && input.getX(0) > Gdx.graphics.getWidth()/3) 
+						|| (input.isTouched(1) && input.getX(1) < Gdx.graphics.getWidth() - Gdx.graphics.getWidth()/3 && input.getX(1) > Gdx.graphics.getWidth()/3))
+					jump(contact);
+			break;
+			default:
+			break;
+		}
+		
+	}
+	private void jump(Contact contact)
+	{
+
+		contact.setRestitution(1.1f);
+//		
+//		if(getBody().getLinearVelocity().y < -MAX_Y_SPEED)
+//			getBody().setLinearVelocity(new Vector2(getBody().getLinearVelocity().x,-MAX_Y_SPEED));
+//		if(Math.abs(getBody().getLinearVelocity().x) > MAX_X_SPEED)
+//			getBody().setLinearVelocity(new Vector2(MAX_Y_SPEED*getBody().getLinearVelocity().x/Math.abs(getBody().getLinearVelocity().x),getBody().getLinearVelocity().y));
+	}
 	@Override
 	public void beginContactWith(GameObject gameObject, Vector2 normal) {
 		
@@ -141,8 +169,8 @@ public class Player extends GameObject {
 
 	@Override
 	public void endContactWith(GameObject gameObject, Vector2 normal) {
-		if(normal.y < (getBody().getPosition().y - BOUNCE_OFFSET) & Math.abs(getBody().getLinearVelocity().y) < MIN_Y_SPEED)
-			getBody().setLinearVelocity(getBody().getLinearVelocity().x, MIN_Y_SPEED);
+//		if(normal.y < (getBody().getPosition().y - BOUNCE_OFFSET) & Math.abs(getBody().getLinearVelocity().y) < MIN_Y_SPEED)
+//			getBody().setLinearVelocity(getBody().getLinearVelocity().x, MIN_Y_SPEED);
 		
 	}
 }
