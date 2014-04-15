@@ -1,13 +1,10 @@
 package com.me.mygdxgame.screen;
 
-import java.util.ArrayList;
-
 import player.Player;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -15,7 +12,6 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Matrix4;
@@ -31,29 +27,25 @@ import com.me.mygdxgame.Assets;
 import com.me.mygdxgame.Constant;
 import com.me.mygdxgame.GameObject;
 import com.me.mygdxgame.MapBodyManager;
-import com.me.mygdxgame.environment.Platform;
-import com.me.mygdxgame.environment.WorldFactory;
 
 public class GameScreen implements Screen {
 	private OrthographicCamera camera;
 	private OrthogonalTiledMapRenderer mapRenderer;
 	private TiledMap map;
-	private TiledMapTileLayer blocks;
-	
-	private ArrayList<Platform> platforms;
 
 	private SpriteBatch batch;
 	private Texture texture;
 	private Player player;
 	private World world;
-	private WorldFactory worldFactory;
 	private Matrix4 debugMatrix;
+	private BitmapFont font;
 	// Rendering Box2D gfx
 	private Box2DDebugRenderer debugRenderer;
 	boolean debug = false;
 	// Which nr of map is it
 	private double mapX = 0;
 	private double mapY = 0;
+	private double playerMapX; 
 	// Screen resolution
 	Vector2 screenResolution;
 	//Shaderprogram
@@ -66,11 +58,8 @@ public class GameScreen implements Screen {
 		Assets.load();
 		// Create Box2d world
 		world = new World(new Vector2(0, -20), true);
-		worldFactory = new WorldFactory(world);
 		// Create player, sending world to be able to create physical body
 		player = new Player(world);
-		// ArrayList that holds all platforms
-		platforms = new ArrayList<Platform>();
 		// Loading the testmap
 		map = new TmxMapLoader().load("environment/mud-test.tmx");
 		mapRenderer = new OrthogonalTiledMapRenderer(map);
@@ -85,10 +74,12 @@ public class GameScreen implements Screen {
 		debugRenderer = new Box2DDebugRenderer();
 		
 		screenResolution = new Vector2(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+		
+		font = new BitmapFont();
 		font.scale(10);
 	}
 	
-	BitmapFont font = new BitmapFont();
+	
 	@Override
 	public void render(float delta) {
 		// Shader
@@ -126,7 +117,7 @@ public class GameScreen implements Screen {
 		// Simulate Box2D world
 		world.step(1 / 60f, 6, 2);
 	}
-	double playerMapX; 
+	
 	private void generalUpdate() {
 		player.generalUpdate(Gdx.input);
 		playerMapX = Math.floor(player.getBody().getPosition().x*Constant.BOX_TO_WORLD/1920);
@@ -216,9 +207,6 @@ public class GameScreen implements Screen {
 		
 		// Sprite batch
 		batch.setShader(shader);
-
-		
-
 	}
 
 	@Override
@@ -246,26 +234,10 @@ public class GameScreen implements Screen {
 		batch.dispose();
 		texture.dispose();
 	}
+	
 	private void createMap(TiledMap map)
 	{
 		(new MapBodyManager(world,100f,0)).createPhysics(map);
 	}
-	private void createObjectsFromMap(TiledMap map){blocks = (TiledMapTileLayer) map.getLayers().get("Tile Layer 1");
-	for(int x = 0; x < blocks.getWidth(); x++){
-		for(int y = 0; y < blocks.getHeight(); y++){
-			if(blocks.getCell(x, y) != null){
-				// Checks the properties of the tile and creates a platform if the type is "solid"
-				if(blocks.getCell(x, y).getTile().getProperties().get("type").equals("platform")){
-					addPlatform(worldFactory.createPlatform((x*Constant.WORLD_TO_BOX*32)+(16*Constant.WORLD_TO_BOX), (y*Constant.WORLD_TO_BOX*32)+(16*Constant.WORLD_TO_BOX), (String) blocks.getCell(x, y).getTile().getProperties().get("shape")));
-				}
-				
-			}
-		}
-	}
-}
-	private void addPlatform(Platform platform){
-		platforms.add(platform);
-	}
-
 }
 

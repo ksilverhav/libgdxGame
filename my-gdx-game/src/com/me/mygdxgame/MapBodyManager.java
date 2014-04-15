@@ -35,7 +35,7 @@ public class MapBodyManager {
 	private float units;
 	private Array<Body> bodies = new Array<Body>();
 	private ObjectMap<String, FixtureDef> materials = new ObjectMap<String, FixtureDef>();
-	ArrayList<Platform> platforms;
+	private ArrayList<Platform> platforms;
 
 	/**
 	 * @param world
