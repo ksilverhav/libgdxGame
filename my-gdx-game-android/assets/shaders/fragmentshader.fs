@@ -23,9 +23,5 @@ void main() {
 		float len = length(pos);
 		float vignette = smoothstep(.5, .4, len);
 		color.rgb = mix(color.rgb, color.rgb * vignette, .7);
-		gl_FragColor = color;
-		
-
-	
-	
+		gl_FragColor = color;	
 }

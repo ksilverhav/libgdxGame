@@ -93,13 +93,21 @@ public class GameScreen implements Screen {
 		generalUpdate();
 		camera.update();
 
+		
+		
 		batch.begin();
 		batch.disableBlending();
 		Assets.spriteBackground.draw(batch);
 		Assets.spriteBackground2.draw(batch);
 
 		batch.enableBlending();
+		batch.end();
 		
+		//Draw map behind player
+		mapRenderer.setView(camera);
+		mapRenderer.render();
+		
+		batch.begin();
 		player.draw(batch);
 		
 		
@@ -107,8 +115,7 @@ public class GameScreen implements Screen {
 		
 		batch.end();
 		
-		mapRenderer.setView(camera);
-		mapRenderer.render();
+		
 		
 		if(debug)
 			debugRenderer.render(world, debugMatrix);
@@ -193,7 +200,7 @@ public class GameScreen implements Screen {
 		debugMatrix.scale(100f, 100f, 1f);
 		// debugMatrix.scale(Constants.BOX_TO_WORLD, Constants.BOX_TO_WORLD,
 		// Shader
-		shader = new ShaderProgram(Gdx.files.internal("shaders/vertexshader.vs"), Gdx.files.internal("shaders/fragmentshader.fs"));
+		shader = new ShaderProgram(Gdx.files.internal("shaders/vertexshader-passthrough.vs"), Gdx.files.internal("shaders/fragmentshader-passthrough.fs"));
 		if(!shader.isCompiled()){
 		    String log = shader.getLog();
 		    System.out.println(log);
