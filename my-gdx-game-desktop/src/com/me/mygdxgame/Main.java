@@ -12,6 +12,7 @@ public class Main {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		cfg.title = "my-gdx-game";
 		cfg.useGL20 = true;
+
 		cfg.width = 1920;
 		cfg.height = 1080;
 		cfg.fullscreen = true;
