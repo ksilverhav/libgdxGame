@@ -3,13 +3,12 @@ package player;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Input.Keys;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.CircleShape;
+import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
@@ -18,8 +17,7 @@ import com.me.mygdxgame.Constant;
 import com.me.mygdxgame.GameObject;
 
 public class Player extends GameObject {
-	private Sprite sprite;
-	private Body body;
+	
 	private BodyDef bodyDef;
 	@SuppressWarnings("unused")
 	private World world;
@@ -27,15 +25,9 @@ public class Player extends GameObject {
 	private FixtureDef fixtureDef;
 	private Fixture fixture;
 	
-	private boolean jump = false;
-	private final float JUMP_SPEED = 1.5f;
-	private final float MAX_X_SPEED = 2;
-	private final float MAX_Y_SPEED = 15;
+	private final float MAX_X_SPEED = 10;
+	private final float MAX_Y_SPEED = 10;
 	private final float MIN_Y_SPEED = 5;
-	private final float MAX_SPEED = 10;
-	private final float BOUNCE_OFFSET = 0.08f;
-	private final float MAX_SPEED_SQUARED = MAX_SPEED * MAX_SPEED;
-	private final float JUMP_RESTITUTION = 1.2f;
 	private final float NORMAL_RESTITUTION = 0.6f;
 
 	public Player(World world) {
@@ -63,7 +55,7 @@ public class Player extends GameObject {
 		fixtureDef = new FixtureDef();
 		fixtureDef.shape = circle;
 		fixtureDef.density = 0.5f;
-		fixtureDef.friction = 0.0f;
+		fixtureDef.friction = 0.9f;
 		fixtureDef.restitution = NORMAL_RESTITUTION; // Make it bounce a little bit
 
 		// Create our fixture and attach it to the body
@@ -85,55 +77,52 @@ public class Player extends GameObject {
 		sprite.draw(batch);
 	}
 
-	public float getX() {
-		return body.getPosition().x;
-	}
-
-	public float gety() {
-		return body.getPosition().y;
-	}
-
-	public Sprite getSprite() {
-		return sprite;
-	}
-
-	public void setSprite(Sprite sprite) {
-		this.sprite = sprite;
-	}
-
-	public Body getBody() {
-		return body;
-	}
-
-	public void setBody(Body body) {
-		this.body = body;
-	}
-
 	public void generalUpdate(Input input) {
-//		if(Math.abs(getBody().getLinearVelocity().y) > MAX_Y_SPEED)
-//			getBody().setLinearVelocity(getBody().getLinearVelocity().x, MAX_Y_SPEED*Math.abs(getBody().getLinearVelocity().y)/getBody().getLinearVelocity().y);
-//		if(Math.abs(getBody().getLinearVelocity().x) > MAX_X_SPEED)
-//			getBody().setLinearVelocity(MAX_X_SPEED*Math.abs(getBody().getLinearVelocity().x)/getBody().getLinearVelocity().x,getBody().getLinearVelocity().y);
-		if(getBody().getLinearVelocity().dot(getBody().getLinearVelocity()) > MAX_SPEED_SQUARED)
-			getBody().setLinearVelocity(getBody().getLinearVelocity().nor().scl(MAX_SPEED));
+
+		if(Math.abs(getBody().getLinearVelocity().x) > MAX_X_SPEED)
+			getBody().setLinearVelocity(MAX_X_SPEED*Math.abs(getBody().getLinearVelocity().x)/getBody().getLinearVelocity().x,getBody().getLinearVelocity().y);
+		
 		switch (Gdx.app.getType()) {
 		case Desktop:
 			if (input.isKeyPressed(Keys.D))
-				getBody().applyForceToCenter(MAX_X_SPEED, 0, true);
+				getBody().applyForceToCenter(0.8f, 0, true);
 			if (input.isKeyPressed(Keys.A))
-				getBody().applyForceToCenter(-MAX_X_SPEED, 0, true);
-			if (input.isKeyPressed(Keys.SPACE))
-				getBody().getFixtureList().get(0).setRestitution(JUMP_RESTITUTION);
-			else
-				getBody().getFixtureList().get(0).setRestitution(NORMAL_RESTITUTION);
-			break;
+				getBody().applyForceToCenter(-0.8f, 0, true);
+
 		case Android:
 
 			break;
 		default:
+			break;
 		}
 	}
-
+	public void beginContact(Contact contact, Input input)
+	{
+		// Restrict Y-speed
+		// Check if android or desktop
+		if(getBody().getLinearVelocity().y > -MIN_Y_SPEED && getBody().getLinearVelocity().y < 0)
+			getBody().setLinearVelocity(new Vector2(getBody().getLinearVelocity().x,-MIN_Y_SPEED));
+		switch(Gdx.app.getType())
+		{
+			case Desktop:
+				if(input.isKeyPressed(Keys.SPACE))
+					jump(contact);
+			break;
+			case Android:
+				if((input.isTouched(0) && input.getX(0) < Gdx.graphics.getWidth() - Gdx.graphics.getWidth()/3 && input.getX(0) > Gdx.graphics.getWidth()/3) 
+						|| (input.isTouched(1) && input.getX(1) < Gdx.graphics.getWidth() - Gdx.graphics.getWidth()/3 && input.getX(1) > Gdx.graphics.getWidth()/3))
+					jump(contact);
+			break;
+			default:
+			break;
+		}
+		
+	}
+	private void jump(Contact contact)
+	{
+		contact.setRestitution(1.3f);
+	}
+	
 	@Override
 	public void beginContactWith(GameObject gameObject, Vector2 normal) {
 		
@@ -141,8 +130,11 @@ public class Player extends GameObject {
 
 	@Override
 	public void endContactWith(GameObject gameObject, Vector2 normal) {
-		if(normal.y < (getBody().getPosition().y - BOUNCE_OFFSET) & Math.abs(getBody().getLinearVelocity().y) < MIN_Y_SPEED)
-			getBody().setLinearVelocity(getBody().getLinearVelocity().x, MIN_Y_SPEED);
-		
+	
+	}
+
+	public void endContact(Contact contact, Input input) {
+		if(getBody().getLinearVelocity().y > MAX_Y_SPEED)
+			getBody().setLinearVelocity(getBody().getLinearVelocity().x, MAX_Y_SPEED);
 	}
 }
