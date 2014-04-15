@@ -13,10 +13,11 @@ float rand(vec2 co){
 }
 void main() {
     gl_FragColor = v_color * texture2D(u_texture, v_texCoords);
+	
 		vec4 color = texture2D(u_texture, v_texCoords);
-		vec2 pos = vec2(v_playerPos.x/1920 - gl_FragCoord.x/v_resolution.x, v_playerPos.y/1080 - gl_FragCoord.y/v_resolution.y);
+		vec2 pos = vec2(v_playerPos.x/1920.0 - gl_FragCoord.x/v_resolution.x, v_playerPos.y/1080.0 - gl_FragCoord.y/v_resolution.y);
 		float len = length(pos);
-		float vignette = smoothstep(.5, .4, len*2);
+		float vignette = smoothstep(.5, .4, len*2.0);
 		color.rgb = mix(color.rgb, color.rgb * vignette, .7);
 		gl_FragColor = color;
 		
