@@ -82,12 +82,14 @@ public class GameScreen implements Screen {
 	@Override
 	public void render(float delta) {
 		// Shader
-		
 		shader.begin();
-		 int a = shader.getUniformLocation("u_playerPos");
-		 
-		 shader.setUniformf(a ,player.getBody().getPosition().x*Constant.BOX_TO_WORLD, player.getBody().getPosition().y*Constant.BOX_TO_WORLD,0);
+		int a = shader.getUniformLocation("u_playerPos");
+		shader.setUniformf(a ,player.getBody().getPosition().x*Constant.BOX_TO_WORLD, player.getBody().getPosition().y*Constant.BOX_TO_WORLD,0);
+		a = shader.getUniformLocation("u_resolution");
+		shader.setUniformf(a , Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		shader.end();
+		// End of shader stuffs
+		
 		Gdx.gl.glClearColor(0.2f, 0.3f, 0.34f, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.setProjectionMatrix(camera.combined);
