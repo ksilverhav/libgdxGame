@@ -6,7 +6,8 @@ import com.me.mygdxgame.screen.MenuScreen;
 
 public class MyGdxGame extends Game {
 	@Override
-	public void create() {	 
+	public void create() {
+		Assets.load();
 		this.setScreen(new MenuScreen(this));
 	}
 

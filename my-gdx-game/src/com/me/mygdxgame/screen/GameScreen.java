@@ -54,8 +54,6 @@ public class GameScreen implements Screen {
 	int b; // Uniform ID
 	
 	public GameScreen() {
-		// Load assets
-		Assets.load();
 		// Create Box2d world
 		world = new World(new Vector2(0, -20), true);
 		// Create player, sending world to be able to create physical body
