@@ -141,6 +141,8 @@ public class GameScreen implements Screen {
 			debug =false;
 		if(Gdx.input.isKeyPressed(Keys.F2))
 			debug =true;
+		if(Gdx.input.isKeyPressed(Keys.ESCAPE))
+			Gdx.app.exit();
 	}
 
 	private void createCollisionListener() {
