@@ -32,7 +32,7 @@ public class Player extends GameObject {
 	private final float JUMP_SPEED = 1.5f;
 	private final float MAX_X_SPEED = 10;
 	private final float MAX_Y_SPEED = 10;
-	private final float MIN_Y_SPEED = 0;
+	private final float MIN_Y_SPEED = 5;
 	private final float MAX_SPEED = 10;
 	private final float BOUNCE_OFFSET = 0.08f;
 	private final float MAX_SPEED_SQUARED = MAX_SPEED * MAX_SPEED;
@@ -111,8 +111,7 @@ public class Player extends GameObject {
 	}
 
 	public void generalUpdate(Input input) {
-//		if(Math.abs(getBody().getLinearVelocity().y) > MAX_Y_SPEED)
-//			getBody().setLinearVelocity(getBody().getLinearVelocity().x, MAX_Y_SPEED*Math.abs(getBody().getLinearVelocity().y)/getBody().getLinearVelocity().y);
+
 		if(Math.abs(getBody().getLinearVelocity().x) > MAX_X_SPEED)
 			getBody().setLinearVelocity(MAX_X_SPEED*Math.abs(getBody().getLinearVelocity().x)/getBody().getLinearVelocity().x,getBody().getLinearVelocity().y);
 
@@ -141,15 +140,7 @@ public class Player extends GameObject {
 		{
 			case Desktop:
 				if(input.isKeyPressed(Keys.SPACE))
-				{
 					jump(contact);
-					getBody().getFixtureList().get(0).setFriction(0.1f);
-				}
-				else
-				{
-					getBody().getFixtureList().get(0).setFriction(0.9f);
-				}
-
 			break;
 			case Android:
 				if((input.isTouched(0) && input.getX(0) < Gdx.graphics.getWidth() - Gdx.graphics.getWidth()/3 && input.getX(0) > Gdx.graphics.getWidth()/3) 
@@ -164,12 +155,7 @@ public class Player extends GameObject {
 	private void jump(Contact contact)
 	{
 		
-		contact.setRestitution(1.1f);
-//		
-//		if(getBody().getLinearVelocity().y < -MAX_Y_SPEED)
-//			getBody().setLinearVelocity(new Vector2(getBody().getLinearVelocity().x,-MAX_Y_SPEED));
-//		if(Math.abs(getBody().getLinearVelocity().x) > MAX_X_SPEED)
-//			getBody().setLinearVelocity(new Vector2(MAX_Y_SPEED*getBody().getLinearVelocity().x/Math.abs(getBody().getLinearVelocity().x),getBody().getLinearVelocity().y));
+		contact.setRestitution(1.13f);
 	}
 	@Override
 	public void beginContactWith(GameObject gameObject, Vector2 normal) {
@@ -178,9 +164,7 @@ public class Player extends GameObject {
 
 	@Override
 	public void endContactWith(GameObject gameObject, Vector2 normal) {
-//		if(normal.y < (getBody().getPosition().y - BOUNCE_OFFSET) & Math.abs(getBody().getLinearVelocity().y) < MIN_Y_SPEED)
-//			getBody().setLinearVelocity(getBody().getLinearVelocity().x, MIN_Y_SPEED);
-		
+	
 	}
 
 	public void endContact(Contact contact, Input input) {

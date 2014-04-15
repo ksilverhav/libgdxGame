@@ -57,7 +57,7 @@ public class MapBodyManager {
 
 		FixtureDef defaultFixture = new FixtureDef();
 		defaultFixture.density = 1.0f;
-		defaultFixture.friction = 0.8f;
+		defaultFixture.friction = 0.0f;
 		defaultFixture.restitution = 0.0f;
 
 		materials.put("default", defaultFixture);
@@ -156,13 +156,13 @@ public class MapBodyManager {
 
 		FixtureDef fixtureDef = new FixtureDef();
 		fixtureDef.density = 1.0f;
-		fixtureDef.friction = 1.0f;
+		fixtureDef.friction = 0f;
 		fixtureDef.restitution = 0.0f;
 		materials.put("default", fixtureDef);
 
 		fixtureDef = new FixtureDef();
 		fixtureDef.density = 0.5f;
-		fixtureDef.friction = 0.1f;
+		fixtureDef.friction = 0.01f;
 		fixtureDef.restitution = 0.6f;
 
 		materials.put("default", fixtureDef);

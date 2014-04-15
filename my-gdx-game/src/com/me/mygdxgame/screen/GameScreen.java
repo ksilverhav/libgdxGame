@@ -7,19 +7,19 @@ import player.Player;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
@@ -49,11 +49,14 @@ public class GameScreen implements Screen {
 	private WorldFactory worldFactory;
 	private Matrix4 debugMatrix;
 	// Rendering Box2D gfx
-	private Box2DDebugRenderer debugRenderer = new Box2DDebugRenderer();
+	private Box2DDebugRenderer debugRenderer;
 	boolean debug = false;
-
+	// Screen resolution
+	Vector2 screenResolution;
 	//Shaderprogram
 	ShaderProgram shader;
+	int a; // Uniform ID
+	int b; // Uniform ID
 	
 	public GameScreen() {
 		// Load assets
@@ -66,7 +69,7 @@ public class GameScreen implements Screen {
 		// ArrayList that holds all platforms
 		platforms = new ArrayList<Platform>();
 		// Loading the testmap
-		map = new TmxMapLoader().load("environment/untitled.tmx");
+		map = new TmxMapLoader().load("environment/mud-test.tmx");
 		mapRenderer = new OrthogonalTiledMapRenderer(map);
 		createMap(map);
 		//createObjectsFromMap(map);
@@ -76,17 +79,19 @@ public class GameScreen implements Screen {
 
 		createCollisionListener();
 		
-	
+		debugRenderer = new Box2DDebugRenderer();
+		
+		screenResolution = new Vector2(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+		font.scale(10);
 	}
 	
+	BitmapFont font = new BitmapFont();
 	@Override
 	public void render(float delta) {
 		// Shader
 		shader.begin();
-		int a = shader.getUniformLocation("u_playerPos");
 		shader.setUniformf(a ,player.getBody().getPosition().x*Constant.BOX_TO_WORLD, player.getBody().getPosition().y*Constant.BOX_TO_WORLD,0);
-		a = shader.getUniformLocation("u_resolution");
-		shader.setUniformf(a , Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+		shader.setUniformf(b , screenResolution);
 		shader.end();
 		// End of shader stuffs
 		
@@ -97,8 +102,16 @@ public class GameScreen implements Screen {
 		camera.update();
 
 		batch.begin();
+		batch.disableBlending();
 		Assets.spriteBackground.draw(batch);
+
+		batch.enableBlending();
+		
 		player.draw(batch);
+		
+		
+		font.draw(batch, String.valueOf(Gdx.graphics.getFramesPerSecond()), 300, 1000);
+		
 		batch.end();
 		
 		mapRenderer.setView(camera);
@@ -120,13 +133,15 @@ public class GameScreen implements Screen {
 	}
 
 	private void createCollisionListener() {
+		
 	    world.setContactListener(new ContactListener() {
-
+	    	Fixture fixtureA;
+	    	Fixture fixtureB;
 	    	@Override
 	    	public void beginContact(Contact contact) {
 	    		player.beginContact(contact, Gdx.input);
-	    		Fixture fixtureA = contact.getFixtureA();
-	    		Fixture fixtureB = contact.getFixtureB();
+	    		fixtureA = contact.getFixtureA();
+	    		fixtureB = contact.getFixtureB();
 	    		((GameObject) fixtureA.getUserData()).beginContactWith((GameObject) fixtureB.getUserData(), contact.getWorldManifold().getPoints()[0]);
 	    		((GameObject) fixtureB.getUserData()).beginContactWith((GameObject) fixtureA.getUserData(), contact.getWorldManifold().getPoints()[0]);
 	        }
@@ -134,8 +149,8 @@ public class GameScreen implements Screen {
 	    	@Override
 	        public void endContact(Contact contact) {
 	    		player.endContact(contact, Gdx.input);
-	            Fixture fixtureA = contact.getFixtureA();
-	            Fixture fixtureB = contact.getFixtureB();
+	            fixtureA = contact.getFixtureA();
+	            fixtureB = contact.getFixtureB();
 	    		((GameObject) fixtureA.getUserData()).endContactWith((GameObject) fixtureB.getUserData(), contact.getWorldManifold().getPoints()[0]);
 	    		((GameObject) fixtureB.getUserData()).endContactWith((GameObject) fixtureA.getUserData(), contact.getWorldManifold().getPoints()[0]);
 	        }
@@ -154,7 +169,7 @@ public class GameScreen implements Screen {
 	@Override
 	public void resize(int width, int height) {
 		// TODO Auto-generated method stub
-
+		screenResolution = new Vector2(width,height);
 	}
 
 	@Override
@@ -170,6 +185,9 @@ public class GameScreen implements Screen {
 		    String log = shader.getLog();
 		    System.out.println(log);
 		}
+		
+		a = shader.getUniformLocation("u_playerPos");
+		b = shader.getUniformLocation("u_resolution");
 		//ShaderProgram.pedantic = false;
 		// Map Renderer
 		mapRenderer.getSpriteBatch().setShader(shader);
