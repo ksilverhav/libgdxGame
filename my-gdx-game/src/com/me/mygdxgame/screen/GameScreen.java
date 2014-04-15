@@ -107,6 +107,7 @@ public class GameScreen implements Screen {
 		batch.begin();
 		batch.disableBlending();
 		Assets.spriteBackground.draw(batch);
+		Assets.spriteBackground2.draw(batch);
 
 		batch.enableBlending();
 		
