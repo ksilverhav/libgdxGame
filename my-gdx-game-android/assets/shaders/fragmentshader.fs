@@ -17,6 +17,7 @@ float rand(vec2 co){
 
 void main() {
     gl_FragColor = v_color * texture2D(u_texture, v_texCoords);
+	
 		vec4 color = texture2D(u_texture, v_texCoords);
 		vec2 pos = vec2(gl_FragCoord.x/v_resolution.x, gl_FragCoord.y/v_resolution.y) - 0.5;
 		float len = length(pos);
