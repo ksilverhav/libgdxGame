@@ -2,11 +2,12 @@ package com.me.mygdxgame;
 
 import com.badlogic.gdx.Game;
 import com.me.mygdxgame.screen.GameScreen;
+import com.me.mygdxgame.screen.MenuScreen;
 
 public class MyGdxGame extends Game {
 	@Override
 	public void create() {	 
-		this.setScreen(new GameScreen());
+		this.setScreen(new MenuScreen(this));
 	}
 
 	@Override
