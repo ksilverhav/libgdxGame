@@ -142,6 +142,10 @@ public class GameScreen implements Screen {
 				camera.translate(new Vector2(-1920,0));
 				mapX--;
 			}
+			camera.update();
+			debugMatrix = new Matrix4(camera.combined);
+			debugMatrix.scale(100f, 100f, 1f);
+			
 		}
 		// Turn on and off Box2D debugging
 		if(Gdx.input.isKeyPressed(Keys.F1))
