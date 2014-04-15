@@ -43,7 +43,7 @@ public class MenuScreen implements Screen {
 
 	@Override
 	public void show() {
-		// TODO Auto-generated method stub
+		game.setScreen(new GameScreen());
 		
 	}
 
