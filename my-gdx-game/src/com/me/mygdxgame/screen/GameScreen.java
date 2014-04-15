@@ -142,7 +142,6 @@ public class GameScreen implements Screen {
 				mapX--;
 			}
 		}
-		System.out.println(player.getBody().getPosition().x*Constant.BOX_TO_WORLD);
 		// Turn on and off Box2D debugging
 		if(Gdx.input.isKeyPressed(Keys.F1))
 			debug =false;
