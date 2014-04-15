@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="60" height="34" tilewidth="32" tileheight="32">
+<map version="1.0" orientation="orthogonal" width="180" height="34" tilewidth="32" tileheight="32">
  <tileset firstgid="1" name="mud-spritesheet" tilewidth="32" tileheight="32">
   <image source="mud-spritesheet.png" width="288" height="96"/>
  </tileset>
- <layer name="Tile Layer 1" width="60" height="34">
+ <layer name="Tile Layer 1" width="180" height="34">
   <data encoding="base64" compression="zlib">
-   eJztmNkOgyAQRSea7mm1Tbro/39ovWlJ0FDUYRCo3OS8GfDgDKIVEd0FqTUkx5Wg6jiTbC5f16vwuBI5UvZ1TfaNJ9nXPSn47mZys4wZu2/NwOaSfeOJ8q1msjZfsNXYa2PG7ot7fzFoNFptzCV9Nx0lfda8oP66m5L6+whznTTG5kzd90n9mmvtlzv5opYKA1jnmPuX66ueI+edFSouvqilxsJYbYWIj/71EfTO2N47Jan4opYk6iUVX6lwfA8kU1shwvHFvhzj3jslHF/00sPDvSyREP2LfsC5BP8NygG2/wgSCeE7PPPOOf+6JvvKR9WvAt+f/+yLOX75mTB9g0gSm69v1ubru4ZCu2XWxRtgHx58
+   eJztm+uKwyAQRqVlu/emu7DX93/QzbAIQRKNcRzH8Tvw0f5KpJzYcTSTc+6DMbdFOK/LkWnO90C5uvF4Zb4e/Ybk8hvzdTl4cjrHVQv4XA581gN8Lgc+6wE+lwOf9QCfy4HPeoDP5Wj2+WvOb+tBCDKqz/eZeY9cT7PPozGiz7cDibkKn/UAn+GzJUb1ecpMbz7fzbnsyEOrAVYCPu/PlgcafaZ1IO3/0rh/IrG2VhzR56NnGrY8kPSZ5t2z+3+mTi49v6JfZ5+e+3V0r+dFUveU8JmeMS11C3wuR9JnX0f4pOoFCZ+vAvfYC3zeD81Dp5XQPKmtfvbAZ/sc9dnPw0d6eq2Az/Y56jP91/fWK5DyOez/tOoJwmedcK2xJHzW9JzDZ51wnSNCv84+PfjMBXy2T67Pj05PfzUX+GyfXJ81rd9zqe3z8pyIP1t7WXyG32uvD+FzGqplP2sMRIDaPof7O3tSc30In+tD9Qrtu9A8dQ4Se0+AA9Qb9pH2OTxzkXP+ohT4bB/4bBf4zI+vL3xo7ww+ywCf+SGHtvxdy9oZJ87E9qKtBT7zk+tz7bwMltGAz7YzGrX/41v7C5/zSb07qpnWfsFnfT4v6c3r1n7BZ90+h2j3+Q/YLzwE
   </data>
  </layer>
- <objectgroup name="physics" width="60" height="34">
+ <objectgroup name="physics" width="180" height="34">
   <object x="-2" y="0" width="1926" height="32"/>
-  <object x="1888" y="32" width="30" height="864"/>
   <object x="1148" y="899" width="769" height="23"/>
   <object x="897" y="768" width="255" height="171"/>
   <object x="895" y="864">
@@ -41,6 +40,36 @@
   <object x="449" y="352" width="114" height="62"/>
   <object x="564" y="352">
    <polygon points="0,0 10,10 11,51 0,63"/>
+  </object>
+  <object x="1888" y="33" width="61" height="188"/>
+  <object x="1887" y="380" width="64" height="518"/>
+  <object x="1838" y="321" width="326" height="62"/>
+  <object x="1838" y="322">
+   <polygon points="0,0 -11,7 -12,52 -1,62"/>
+  </object>
+  <object x="2164" y="382">
+   <polygon points="0,0 12,-12 11,-51 1,-62"/>
+  </object>
+  <object x="1917" y="896" width="1889" height="28"/>
+  <object x="3808" y="30" width="31" height="867"/>
+  <object x="1924" y="-1" width="1880" height="32"/>
+  <object x="2689" y="428" width="62" height="167"/>
+  <object x="2689" y="426">
+   <polygon points="0,0 11,-9 51,-9 62,1"/>
+  </object>
+  <object x="2753" y="544" width="212" height="63"/>
+  <object x="2688" y="597">
+   <polygon points="0,0 11,11 63,11 63,-1"/>
+  </object>
+  <object x="2966" y="544">
+   <polygon points="0,0 9,9 10,51 0,63"/>
+  </object>
+  <object x="2669" y="705" width="424" height="63"/>
+  <object x="2667" y="705">
+   <polygon points="0,0 -11,9 -10,53 -1,62"/>
+  </object>
+  <object x="3094" y="705">
+   <polygon points="0,0 8,8 9,52 -1,64"/>
   </object>
  </objectgroup>
 </map>

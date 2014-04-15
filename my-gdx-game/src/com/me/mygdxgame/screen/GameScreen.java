@@ -51,6 +51,9 @@ public class GameScreen implements Screen {
 	// Rendering Box2D gfx
 	private Box2DDebugRenderer debugRenderer;
 	boolean debug = false;
+	// Which nr of map is it
+	private double mapX = 0;
+	private double mapY = 0;
 	// Screen resolution
 	Vector2 screenResolution;
 	//Shaderprogram
@@ -122,9 +125,24 @@ public class GameScreen implements Screen {
 		// Simulate Box2D world
 		world.step(1 / 60f, 6, 2);
 	}
-
+	double playerMapX; 
 	private void generalUpdate() {
 		player.generalUpdate(Gdx.input);
+		playerMapX = Math.floor(player.getBody().getPosition().x*Constant.BOX_TO_WORLD/1920);
+		if(playerMapX != mapX)
+		{
+			if(playerMapX > mapX)
+			{
+				camera.translate(new Vector2(1920,0));
+				mapX++;
+			}
+			else
+			{
+				camera.translate(new Vector2(-1920,0));
+				mapX--;
+			}
+		}
+		System.out.println(player.getBody().getPosition().x*Constant.BOX_TO_WORLD);
 		// Turn on and off Box2D debugging
 		if(Gdx.input.isKeyPressed(Keys.F1))
 			debug =false;
@@ -191,6 +209,7 @@ public class GameScreen implements Screen {
 		//ShaderProgram.pedantic = false;
 		// Map Renderer
 		mapRenderer.getSpriteBatch().setShader(shader);
+		
 		// Sprite batch
 		batch.setShader(shader);
 
