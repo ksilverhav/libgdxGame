@@ -47,9 +47,9 @@ public class GameScreen implements Screen {
 	private double mapY = 0;
 	private double playerMapX; 
 	// Screen resolution
-	Vector2 screenResolution;
+	private Vector2 screenResolution;
 	//Shaderprogram
-	ShaderProgram shader;
+	private ShaderProgram shader;
 	int a; // Uniform ID
 	int b; // Uniform ID
 	
