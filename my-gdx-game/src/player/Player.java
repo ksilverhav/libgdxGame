@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
@@ -66,15 +67,18 @@ public class Player extends GameObject {
 		// BodyDef and FixtureDef don't need disposing, but shapes do.
 		circle.dispose();
 		getBody().setFixedRotation(true);
+		
 	}
-
+	
 	public void draw(SpriteBatch batch) {
+		
 		sprite.setPosition(
 				(body.getPosition().x * Constant.BOX_TO_WORLD)
 						- (sprite.getWidth() / 2),
 				(body.getPosition().y * Constant.BOX_TO_WORLD)
 						- (sprite.getHeight() / 2));
 		sprite.draw(batch);
+		
 	}
 
 	public void generalUpdate(Input input) {
@@ -84,9 +88,9 @@ public class Player extends GameObject {
 		
 		switch (Gdx.app.getType()) {
 		case Desktop:
-			if (input.isKeyPressed(Keys.D))
+			if (input.isKeyPressed(Keys.D) || input.isKeyPressed(Keys.RIGHT))
 				getBody().applyForceToCenter(0.8f, 0, true);
-			if (input.isKeyPressed(Keys.A))
+			if (input.isKeyPressed(Keys.A) || input.isKeyPressed(Keys.LEFT))
 				getBody().applyForceToCenter(-0.8f, 0, true);
 
 		case Android:
@@ -121,6 +125,9 @@ public class Player extends GameObject {
 	private void jump(Contact contact)
 	{
 		contact.setRestitution(1.3f);
+	}
+	public void respawn(){
+		world.destroyBody(body);
 	}
 	
 	@Override

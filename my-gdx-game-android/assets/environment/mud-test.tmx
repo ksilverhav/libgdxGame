@@ -5,7 +5,7 @@
  </tileset>
  <layer name="Tile Layer 1" width="180" height="34">
   <data encoding="base64" compression="zlib">
-   eJztm+uKwyAQRqVlu/emu7DX93/QzbAIQRKNcRzH8Tvw0f5KpJzYcTSTc+6DMbdFOK/LkWnO90C5uvF4Zb4e/Ybk8hvzdTl4cjrHVQv4XA581gN8Lgc+6wE+lwOf9QCfy4HPeoDP5Wj2+WvOb+tBCDKqz/eZeY9cT7PPozGiz7cDibkKn/UAn+GzJUb1ecpMbz7fzbnsyEOrAVYCPu/PlgcafaZ1IO3/0rh/IrG2VhzR56NnGrY8kPSZ5t2z+3+mTi49v6JfZ5+e+3V0r+dFUveU8JmeMS11C3wuR9JnX0f4pOoFCZ+vAvfYC3zeD81Dp5XQPKmtfvbAZ/sc9dnPw0d6eq2Az/Y56jP91/fWK5DyOez/tOoJwmedcK2xJHzW9JzDZ51wnSNCv84+PfjMBXy2T67Pj05PfzUX+GyfXJ81rd9zqe3z8pyIP1t7WXyG32uvD+FzGqplP2sMRIDaPof7O3tSc30In+tD9Qrtu9A8dQ4Se0+AA9Qb9pH2OTxzkXP+ohT4bB/4bBf4zI+vL3xo7ww+ywCf+SGHtvxdy9oZJ87E9qKtBT7zk+tz7bwMltGAz7YzGrX/41v7C5/zSb07qpnWfsFnfT4v6c3r1n7BZ90+h2j3+Q/YLzwE
+   eJztm+tqwzAMRk3LunvTDXZ9/wddxAgEkzh2LMuK9B34aH8lppy4tqwMIYQPxtxm4bwuR4Yx345yDf54Zb4e/Ybk8hvzdTl4CjrH1Qr4XA981gN8rgc+6wE+1wOf9QCf64HPeoDP9Wj2+WvMb+9BCOLV5/vCvCeup9lnb3j0+bYjKVfhsx7gM3y2hFefh8Iczee7MZeMPPQaYCPgc37WPNDoM+0D6fyXxv2TiLW9okef9/Y0rHkg6TPNu+fw/0ydwvb8inqdfY5cr6N7Pc+ydU8Jn+kZ07Jugc/1SPo8rSOmbK0XJHy+CtwjF/icD81Dp4XQPKlt/TwBn+2z1+dpHt5T0+sFfLbPXp/pv/5otQIpn+P6T6+aIHzWCdceS8JnTc85fNYJVx8R6nX2OYLPXMBn+5T6/Bj01FdLgc/2KfVZ0/69lNY+z/tEpt7ay+wz/t56fwift6G17GeLgQjQ2uf4fCcnLfeH8Lk9tF6hcxeap85RUu8JcID1hn2kfY57Lkr6L2qBz/aBz3aBz/zEfR50dgafZYDP/JBDa/4uZanHiTOps2hrgc/8lPrcOi/O4g34bDveaP0f39tf+FzO1rujmuntF3zW5/Oco3nd2y/4rNvnGO0+/wGK7zwA
   </data>
  </layer>
  <objectgroup name="physics" width="180" height="34">
