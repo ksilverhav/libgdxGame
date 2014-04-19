@@ -134,7 +134,7 @@ public class GameScreen implements Screen {
 		font.draw(batch, String.valueOf(Gdx.graphics.getFramesPerSecond()), 300, 1000);
 		
 		batch.end();
-		rayHandler.updateAndRender();
+		//rayHandler.updateAndRender();
 		
 		
 		if(debug)
@@ -275,19 +275,19 @@ public class GameScreen implements Screen {
 		
 		
 //		new PointLight(rayHandler, 128, new Color(1,1,1,1), 10f, 600*Constant.WORLD_TO_BOX, 250*Constant.WORLD_TO_BOX).setStaticLight(true);
-		new PointLight(rayHandler, 128, new Color(1,1,1,0.5f), 10f, 900*Constant.WORLD_TO_BOX, 1000*Constant.WORLD_TO_BOX).setXray(true);
-		new PointLight(rayHandler, 128, new Color(1,1,1,0.5f), 10f, 1100*Constant.WORLD_TO_BOX, 1000*Constant.WORLD_TO_BOX).setXray(true);
-		new PointLight(rayHandler, 128, new Color(1,1,1,0.5f), 10f, 1300*Constant.WORLD_TO_BOX, 1000*Constant.WORLD_TO_BOX).setXray(true);
-		new PointLight(rayHandler, 128, new Color(1,1,1,0.5f), 10f, 1500*Constant.WORLD_TO_BOX, 1000*Constant.WORLD_TO_BOX).setXray(true);
-		
-		new PointLight(rayHandler, 128, new Color(1,1,1,0.5f), 10f, 1200*Constant.WORLD_TO_BOX, 250*Constant.WORLD_TO_BOX).setStaticLight(true);
-		new PointLight(rayHandler, 128, new Color(1,1,1,0.7f), 10f, 1400*Constant.WORLD_TO_BOX, 250*Constant.WORLD_TO_BOX).setStaticLight(false);
-		
-		new PointLight(rayHandler, 128, new Color(1,1,1,0.9f), 10f, 250*Constant.WORLD_TO_BOX, 250*Constant.WORLD_TO_BOX).setStaticLight(true);
-		
-		new PointLight(rayHandler, 128, new Color(1,1,1,0.9f), 10f, 250*Constant.WORLD_TO_BOX, 1000*Constant.WORLD_TO_BOX).setStaticLight(true);
-		
-		new PointLight(rayHandler, 128, new Color(1,1,1,0.5f), 10f, 700*Constant.WORLD_TO_BOX, 800*Constant.WORLD_TO_BOX).setStaticLight(true);
+//		new PointLight(rayHandler, 128, new Color(1,1,1,0.5f), 10f, 900*Constant.WORLD_TO_BOX, 1000*Constant.WORLD_TO_BOX).setXray(true);
+//		new PointLight(rayHandler, 128, new Color(1,1,1,0.5f), 10f, 1100*Constant.WORLD_TO_BOX, 1000*Constant.WORLD_TO_BOX).setXray(true);
+//		new PointLight(rayHandler, 128, new Color(1,1,1,0.5f), 10f, 1300*Constant.WORLD_TO_BOX, 1000*Constant.WORLD_TO_BOX).setXray(true);
+//		new PointLight(rayHandler, 128, new Color(1,1,1,0.5f), 10f, 1500*Constant.WORLD_TO_BOX, 1000*Constant.WORLD_TO_BOX).setXray(true);
+//		
+//		new PointLight(rayHandler, 128, new Color(1,1,1,0.5f), 10f, 1200*Constant.WORLD_TO_BOX, 250*Constant.WORLD_TO_BOX).setStaticLight(true);
+//		new PointLight(rayHandler, 128, new Color(1,1,1,0.7f), 10f, 1400*Constant.WORLD_TO_BOX, 250*Constant.WORLD_TO_BOX).setStaticLight(false);
+//		
+//		new PointLight(rayHandler, 128, new Color(1,1,1,0.9f), 10f, 250*Constant.WORLD_TO_BOX, 250*Constant.WORLD_TO_BOX).setStaticLight(true);
+//		
+//		new PointLight(rayHandler, 128, new Color(1,1,1,0.9f), 10f, 250*Constant.WORLD_TO_BOX, 1000*Constant.WORLD_TO_BOX).setStaticLight(true);
+//		
+//		new PointLight(rayHandler, 128, new Color(1,1,1,0.5f), 10f, 700*Constant.WORLD_TO_BOX, 800*Constant.WORLD_TO_BOX).setStaticLight(true);
 		
 		
 //		new PointLight(rayHandler, 128, new Color(1,0.4f,0,1), 10f, 100*Constant.WORLD_TO_BOX, 900*Constant.WORLD_TO_BOX).setStaticLight(true);
