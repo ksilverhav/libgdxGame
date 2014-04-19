@@ -275,10 +275,10 @@ public class GameScreen implements Screen {
 		
 		
 //		new PointLight(rayHandler, 128, new Color(1,1,1,1), 10f, 600*Constant.WORLD_TO_BOX, 250*Constant.WORLD_TO_BOX).setStaticLight(true);
-		new PointLight(rayHandler, 128, new Color(1,1,1,0.5f), 10f, 900*Constant.WORLD_TO_BOX, 1000*Constant.WORLD_TO_BOX).setStaticLight(true);
-		new PointLight(rayHandler, 128, new Color(1,1,1,0.5f), 10f, 1100*Constant.WORLD_TO_BOX, 1000*Constant.WORLD_TO_BOX).setStaticLight(true);
-		new PointLight(rayHandler, 128, new Color(1,1,1,0.5f), 10f, 1300*Constant.WORLD_TO_BOX, 1000*Constant.WORLD_TO_BOX).setStaticLight(true);
-		new PointLight(rayHandler, 128, new Color(1,1,1,0.5f), 10f, 1500*Constant.WORLD_TO_BOX, 1000*Constant.WORLD_TO_BOX).setStaticLight(true);
+		new PointLight(rayHandler, 128, new Color(1,1,1,0.5f), 10f, 900*Constant.WORLD_TO_BOX, 1000*Constant.WORLD_TO_BOX).setXray(true);
+		new PointLight(rayHandler, 128, new Color(1,1,1,0.5f), 10f, 1100*Constant.WORLD_TO_BOX, 1000*Constant.WORLD_TO_BOX).setXray(true);
+		new PointLight(rayHandler, 128, new Color(1,1,1,0.5f), 10f, 1300*Constant.WORLD_TO_BOX, 1000*Constant.WORLD_TO_BOX).setXray(true);
+		new PointLight(rayHandler, 128, new Color(1,1,1,0.5f), 10f, 1500*Constant.WORLD_TO_BOX, 1000*Constant.WORLD_TO_BOX).setXray(true);
 		
 		new PointLight(rayHandler, 128, new Color(1,1,1,0.5f), 10f, 1200*Constant.WORLD_TO_BOX, 250*Constant.WORLD_TO_BOX).setStaticLight(true);
 		new PointLight(rayHandler, 128, new Color(1,1,1,0.7f), 10f, 1400*Constant.WORLD_TO_BOX, 250*Constant.WORLD_TO_BOX).setStaticLight(false);

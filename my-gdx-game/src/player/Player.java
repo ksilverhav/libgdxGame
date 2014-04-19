@@ -50,7 +50,7 @@ public class Player extends GameObject {
 
 		// Create a circle shape and set its radius to 6
 		circle = new CircleShape();
-		circle.setRadius(0.16f);
+		circle.setRadius(0.08f);
 
 		// Create a fixture definition to apply our shape to
 		fixtureDef = new FixtureDef();
